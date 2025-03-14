@@ -104,43 +104,57 @@ Nowshad's Mirpur Rent Calculator
                 Ground Floor - 19000 Taka
                 <input type="checkbox" id="east-ground-checkbox">
                 <input type="number" id="east-ground-persons" value="0" placeholder="No. of persons" onchange="updateFlatData('east', 0)">
+                <input type="number" id="east-ground-service" value="0" placeholder="Service Charge" onchange="updateFlatData('east', 0)">
                 <span id="east-ground-utility">Utility Bill: 0 Taka</span>
+                <span id="east-ground-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="east-1st">
                 1st Floor - 15500 Taka
                 <input type="checkbox" id="east-1st-checkbox">
                 <input type="number" id="east-1st-persons" value="5" placeholder="No. of persons" onchange="updateFlatData('east', 1)">
+                <input type="number" id="east-1st-service" value="0" placeholder="Service Charge" onchange="updateFlatData('east', 1)">
                 <span id="east-1st-utility">Utility Bill: 1000 Taka</span>
+                <span id="east-1st-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="east-2nd">
                 2nd Floor - 15500 Taka
                 <input type="checkbox" id="east-2nd-checkbox">
                 <input type="number" id="east-2nd-persons" value="6" placeholder="No. of persons" onchange="updateFlatData('east', 2)">
+                <input type="number" id="east-2nd-service" value="0" placeholder="Service Charge" onchange="updateFlatData('east', 2)">
                 <span id="east-2nd-utility">Utility Bill: 1200 Taka</span>
+                <span id="east-2nd-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="east-3rd">
                 3rd Floor - 14500 Taka
                 <input type="checkbox" id="east-3rd-checkbox">
                 <input type="number" id="east-3rd-persons" value="7" placeholder="No. of persons" onchange="updateFlatData('east', 3)">
+                <input type="number" id="east-3rd-service" value="0" placeholder="Service Charge" onchange="updateFlatData('east', 3)">
                 <span id="east-3rd-utility">Utility Bill: 1400 Taka</span>
+                <span id="east-3rd-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="east-4th">
                 4th Floor - 14400 Taka
                 <input type="checkbox" id="east-4th-checkbox">
                 <input type="number" id="east-4th-persons" value="6" placeholder="No. of persons" onchange="updateFlatData('east', 4)">
+                <input type="number" id="east-4th-service" value="0" placeholder="Service Charge" onchange="updateFlatData('east', 4)">
                 <span id="east-4th-utility">Utility Bill: 1200 Taka</span>
+                <span id="east-4th-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="east-5th">
                 5th Floor - 14200 Taka
                 <input type="checkbox" id="east-5th-checkbox">
                 <input type="number" id="east-5th-persons" value="3" placeholder="No. of persons" onchange="updateFlatData('east', 5)">
+                <input type="number" id="east-5th-service" value="0" placeholder="Service Charge" onchange="updateFlatData('east', 5)">
                 <span id="east-5th-utility">Utility Bill: 600 Taka</span>
+                <span id="east-5th-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="east-6th">
                 6th Floor - 0 Taka (Not rented)
                 <input type="checkbox" id="east-6th-checkbox">
                 <input type="number" id="east-6th-persons" value="0" placeholder="No. of persons" onchange="updateFlatData('east', 6)">
+                <input type="number" id="east-6th-service" value="0" placeholder="Service Charge" onchange="updateFlatData('east', 6)">
                 <span id="east-6th-utility">Utility Bill: 0 Taka</span>
+                <span id="east-6th-total">Grand Total: 0 Taka</span>
             </div>
         </div>
 
@@ -151,43 +165,57 @@ Nowshad's Mirpur Rent Calculator
                 Ground Floor - 20500 Taka
                 <input type="checkbox" id="west-ground-checkbox">
                 <input type="number" id="west-ground-persons" value="0" placeholder="No. of persons" onchange="updateFlatData('west', 0)">
+                <input type="number" id="west-ground-service" value="0" placeholder="Service Charge" onchange="updateFlatData('west', 0)">
                 <span id="west-ground-utility">Utility Bill: 0 Taka</span>
+                <span id="west-ground-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="west-1st">
                 1st Floor - 16000 Taka
                 <input type="checkbox" id="west-1st-checkbox">
                 <input type="number" id="west-1st-persons" value="2" placeholder="No. of persons" onchange="updateFlatData('west', 1)">
+                <input type="number" id="west-1st-service" value="0" placeholder="Service Charge" onchange="updateFlatData('west', 1)">
                 <span id="west-1st-utility">Utility Bill: 400 Taka</span>
+                <span id="west-1st-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="west-2nd">
                 2nd Floor - 15000 Taka
                 <input type="checkbox" id="west-2nd-checkbox">
                 <input type="number" id="west-2nd-persons" value="8" placeholder="No. of persons" onchange="updateFlatData('west', 2)">
+                <input type="number" id="west-2nd-service" value="0" placeholder="Service Charge" onchange="updateFlatData('west', 2)">
                 <span id="west-2nd-utility">Utility Bill: 1600 Taka</span>
+                <span id="west-2nd-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="west-3rd">
                 3rd Floor - 14500 Taka
                 <input type="checkbox" id="west-3rd-checkbox">
                 <input type="number" id="west-3rd-persons" value="7" placeholder="No. of persons" onchange="updateFlatData('west', 3)">
+                <input type="number" id="west-3rd-service" value="0" placeholder="Service Charge" onchange="updateFlatData('west', 3)">
                 <span id="west-3rd-utility">Utility Bill: 1400 Taka</span>
+                <span id="west-3rd-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="west-4th">
                 4th Floor - 14000 Taka
                 <input type="checkbox" id="west-4th-checkbox">
                 <input type="number" id="west-4th-persons" value="2" placeholder="No. of persons" onchange="updateFlatData('west', 4)">
+                <input type="number" id="west-4th-service" value="0" placeholder="Service Charge" onchange="updateFlatData('west', 4)">
                 <span id="west-4th-utility">Utility Bill: 400 Taka</span>
+                <span id="west-4th-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="west-5th">
                 5th Floor - 13700 Taka
                 <input type="checkbox" id="west-5th-checkbox">
                 <input type="number" id="west-5th-persons" value="4" placeholder="No. of persons" onchange="updateFlatData('west', 5)">
+                <input type="number" id="west-5th-service" value="0" placeholder="Service Charge" onchange="updateFlatData('west', 5)">
                 <span id="west-5th-utility">Utility Bill: 800 Taka</span>
+                <span id="west-5th-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="west-6th">
                 6th Floor - 6000 Taka
                 <input type="checkbox" id="west-6th-checkbox">
                 <input type="number" id="west-6th-persons" value="0" placeholder="No. of persons" onchange="updateFlatData('west', 6)">
+                <input type="number" id="west-6th-service" value="0" placeholder="Service Charge" onchange="updateFlatData('west', 6)">
                 <span id="west-6th-utility">Utility Bill: 0 Taka</span>
+                <span id="west-6th-total">Grand Total: 0 Taka</span>
             </div>
         </div>
     </div>
@@ -201,16 +229,14 @@ Nowshad's Mirpur Rent Calculator
                     <th>Flat</th>
                     <th>Rent</th>
                     <th>Utility Bill</th>
-                    <th>Total Amount</th>
-                    <th>Received Rent</th>
-                    <th>Due Rent</th>
+                    <th>Service Charge</th>
+                    <th>Grand Total</th>
                 </tr>
             </thead>
             <tbody id="summary-tbody">
                 <!-- Summary rows will be populated here -->
             </tbody>
         </table>
-        
         <div class="input-field">
             <label for="salary-deduction">Salary Deduction (10000 Taka): </label>
             <input type="number" id="salary-deduction" value="10000" onchange="updateTotal()">
@@ -248,30 +274,36 @@ Nowshad's Mirpur Rent Calculator
 <script>
     let flatData = {
         "east": [
-            { rent: 19000, persons: 0, received: 0, utility: 0, due: 0 },
-            { rent: 15500, persons: 5, received: 0, utility: 1000, due: 0 },
-            { rent: 15500, persons: 6, received: 0, utility: 1200, due: 0 },
-            { rent: 14500, persons: 7, received: 0, utility: 1400, due: 0 },
-            { rent: 14400, persons: 6, received: 0, utility: 1200, due: 0 },
-            { rent: 14200, persons: 3, received: 0, utility: 600, due: 0 },
-            { rent: 0, persons: 0, received: 0, utility: 0, due: 0 }
+            { rent: 19000, persons: 0, received: 0, utility: 0, service: 0, due: 0, grandTotal: 0 },
+            { rent: 15500, persons: 5, received: 0, utility: 1000, service: 0, due: 0, grandTotal: 0 },
+            { rent: 15500, persons: 6, received: 0, utility: 1200, service: 0, due: 0, grandTotal: 0 },
+            { rent: 14500, persons: 7, received: 0, utility: 1400, service: 0, due: 0, grandTotal: 0 },
+            { rent: 14400, persons: 6, received: 0, utility: 1200, service: 0, due: 0, grandTotal: 0 },
+            { rent: 14200, persons: 3, received: 0, utility: 600, service: 0, due: 0, grandTotal: 0 },
+            { rent: 0, persons: 0, received: 0, utility: 0, service: 0, due: 0, grandTotal: 0 }
         ],
         "west": [
-            { rent: 20500, persons: 0, received: 0, utility: 0, due: 0 }, // Updated ground floor rent for West side
-            { rent: 16000, persons: 2, received: 0, utility: 400, due: 0 },
-            { rent: 15000, persons: 8, received: 0, utility: 1600, due: 0 },
-            { rent: 14500, persons: 7, received: 0, utility: 1400, due: 0 },
-            { rent: 14000, persons: 2, received: 0, utility: 400, due: 0 },
-            { rent: 13700, persons: 4, received: 0, utility: 800, due: 0 },
-            { rent: 6000, persons: 0, received: 0, utility: 0, due: 0 }
+            { rent: 20500, persons: 0, received: 0, utility: 0, service: 0, due: 0, grandTotal: 0 },
+            { rent: 16000, persons: 2, received: 0, utility: 400, service: 0, due: 0, grandTotal: 0 },
+            { rent: 15000, persons: 8, received: 0, utility: 1600, service: 0, due: 0, grandTotal: 0 },
+            { rent: 14500, persons: 7, received: 0, utility: 1400, service: 0, due: 0, grandTotal: 0 },
+            { rent: 14000, persons: 2, received: 0, utility: 400, service: 0, due: 0, grandTotal: 0 },
+            { rent: 13700, persons: 4, received: 0, utility: 800, service: 0, due: 0, grandTotal: 0 },
+            { rent: 6000, persons: 0, received: 0, utility: 0, service: 0, due: 0, grandTotal: 0 }
         ]
     };
 
     function updateFlatData(side, floorIndex) {
         let persons = document.getElementById(`${side}-${floorIndex}-persons`).value;
+        let serviceCharge = document.getElementById(`${side}-${floorIndex}-service`).value;
         flatData[side][floorIndex].persons = persons;
         flatData[side][floorIndex].utility = persons * 200;
+        flatData[side][floorIndex].service = serviceCharge;
+        flatData[side][floorIndex].grandTotal = parseInt(flatData[side][floorIndex].rent) + parseInt(flatData[side][floorIndex].utility) + parseInt(serviceCharge);
+        
+        // Update the Grand Total for this flat
         document.getElementById(`${side}-${floorIndex}-utility`).innerText = `Utility Bill: ${flatData[side][floorIndex].utility} Taka`;
+        document.getElementById(`${side}-${floorIndex}-total`).innerText = `Grand Total: ${flatData[side][floorIndex].grandTotal} Taka`;
     }
 
     function calculateExpenses() {
@@ -280,25 +312,28 @@ Nowshad's Mirpur Rent Calculator
         let summaryHtml = '';
         let totalRent = 0;
         let totalUtility = 0;
+        let totalServiceCharge = 0;
+        let totalGrandTotal = 0;
 
         for (let side in flatData) {
             for (let floorIndex in flatData[side]) {
                 let flat = flatData[side][floorIndex];
-                let totalAmount = flat.rent + flat.utility;
+                let totalAmount = flat.rent + flat.utility + flat.service;
                 flat.received = flat.rent;  // Assuming rent is received
                 flat.due = flat.rent - flat.received;
                 totalReceived += flat.received;
                 totalRent += flat.rent;
                 totalUtility += flat.utility;
+                totalServiceCharge += flat.service;
+                totalGrandTotal += flat.grandTotal;
 
                 summaryHtml += `
                     <tr>
                         <td>Flat ${floorIndex + 1}</td>
                         <td>${flat.rent}</td>
                         <td>${flat.utility}</td>
-                        <td>${totalAmount}</td>
-                        <td>${flat.received}</td>
-                        <td>${flat.due}</td>
+                        <td>${flat.service}</td>
+                        <td>${flat.grandTotal}</td>
                     </tr>
                 `;
             }
@@ -319,9 +354,11 @@ Nowshad's Mirpur Rent Calculator
         document.getElementById("son-share").innerText = sonShare.toFixed(2);
         document.getElementById("daughter-share").innerText = daughterShare.toFixed(2);
 
-        // Display total rent and utility
+        // Display total rent, utility, service, and grand total
         document.getElementById("total-rent").innerText = totalRent;
         document.getElementById("total-utility").innerText = totalUtility;
+        document.getElementById("total-service").innerText = totalServiceCharge;
+        document.getElementById("total-grand-total").innerText = totalGrandTotal;
     }
 </script>
 
