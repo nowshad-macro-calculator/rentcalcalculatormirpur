@@ -1,4 +1,4 @@
-Mirpur rental and inheritance distribution calculator 
+Mirpur Rent and inheritance calculator 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -121,10 +121,13 @@ Mirpur rental and inheritance distribution calculator
 
     function updateSummary() {
         let totalRentReceived = 0;
+        let totalDue = 0;
         for (let i = 0; i <= 6; i++) {
             ["East", "West"].forEach(side => {
                 let rentReceived = document.getElementById(`${side.toLowerCase()}-${i}-rent`).value === "yes" ? flats[side][i] : 0;
+                let dueAmount = rentReceived === 0 ? flats[side][i] : 0;
                 totalRentReceived += rentReceived;
+                totalDue += dueAmount;
             });
         }
         
@@ -134,20 +137,14 @@ Mirpur rental and inheritance distribution calculator
         let additionalIncome = parseInt(document.getElementById("additional-income").value);
         let totalExpenses = salary + electricityBill + waterBill;
         let netIncome = totalRentReceived + additionalIncome - totalExpenses;
-        let parvinShare = netIncome * 0.125;
-        let nowshadShare = netIncome * 0.5833;
-        let nowshinShare = netIncome * 0.2917;
 
         document.getElementById("summary-details").innerHTML = `
             <h4>${getCurrentMonth()} Summary</h4>
             <p>Total Rent Received: ${totalRentReceived + additionalIncome} Taka</p>
             <p>Additional Income: ${additionalIncome} Taka</p>
+            <p>Total Due: ${totalDue} Taka</p>
             <p>Total Expenses: ${totalExpenses} Taka</p>
             <p>Net Income: ${netIncome} Taka</p>
-            <h4>Inheritance Distribution</h4>
-            <p>Parvin: ${parvinShare.toFixed(2)} Taka</p>
-            <p>Nowshad: ${nowshadShare.toFixed(2)} Taka</p>
-            <p>Nowshin: ${nowshinShare.toFixed(2)} Taka</p>
         `;
     }
 
