@@ -1,4 +1,4 @@
-Nowshad's Mirpur Rent calculator
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -87,6 +87,8 @@ Nowshad's Mirpur Rent calculator
             margin-right: 10px;
         }
     </style>
+    <!-- Include jsPDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
@@ -181,6 +183,7 @@ Nowshad's Mirpur Rent calculator
 
         <div class="record-section">
             <button class="button" onclick="calculateExpenses()">Calculate After Expenses</button>
+            <button class="button" onclick="exportToPDF()">Export to PDF</button>
         </div>
 
         <h4>Total After Deductions: <span id="final-total">0</span></h4>
@@ -269,7 +272,7 @@ Nowshad's Mirpur Rent calculator
 
                 summaryHtml += `
                     <tr>
-                        <td>${side.charAt(0).toUpperCase() + side.slice(1)} ${floorIndex} Floor</td>
+                        <td>${side.charAt(0).toUpperCase() + side.slice(1)} ${parseInt(floorIndex)+1} Floor</td>
                         <td>${flat.rent}</td>
                         <td>${flat.utility}</td>
                         <td>${flat.service}</td>
@@ -300,6 +303,23 @@ Nowshad's Mirpur Rent calculator
         document.getElementById("total-utility").innerText = totalUtility;
         document.getElementById("total-service").innerText = totalServiceCharge;
         document.getElementById("total-grand-total").innerText = totalGrandTotal;
+    }
+
+    function exportToPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        doc.text("Mirpur House Rent Calculator Summary", 10, 10);
+
+        const summaryTable = document.getElementById("summary-tbody");
+        let summaryText = "Flat | Rent | Utility Bill | Service Charge | Grand Total | Due Rent\n";
+        
+        for (let row of summaryTable.rows) {
+            summaryText += `${row.cells[0].innerText} | ${row.cells[1].innerText} | ${row.cells[2].innerText} | ${row.cells[3].innerText} | ${row.cells[4].innerText} | ${row.cells[5].innerText}\n`;
+        }
+
+        doc.text(summaryText, 10, 20);
+        doc.save("Mirpur_House_Rent_Summary.pdf");
     }
 </script>
 
