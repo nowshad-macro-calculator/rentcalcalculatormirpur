@@ -100,7 +100,6 @@
                 <span>East Side Ground Floor</span> - 19000 Taka
                 <input type="checkbox" id="east-ground-checkbox" onchange="updateFlatData('east', 0)">
                 <input type="number" id="east-ground-persons" value="0" placeholder="No. of persons" onchange="updateFlatData('east', 0)">
-                <input type="number" id="east-ground-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('east', 0)">
                 <span id="east-ground-total">Grand Total: 19000 Taka</span>
                 <span id="east-ground-due">Due: 19000 Taka</span>
             </div>
@@ -108,7 +107,6 @@
                 <span>East Side 1st Floor</span> - 15500 Taka
                 <input type="checkbox" id="east-1st-checkbox" onchange="updateFlatData('east', 1)">
                 <input type="number" id="east-1st-persons" value="5" placeholder="No. of persons" onchange="updateFlatData('east', 1)">
-                <input type="number" id="east-1st-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('east', 1)">
                 <span id="east-1st-total">Grand Total: 16500 Taka</span>
                 <span id="east-1st-due">Due: 15500 Taka</span>
             </div>
@@ -116,7 +114,6 @@
                 <span>East Side 2nd Floor</span> - 15500 Taka
                 <input type="checkbox" id="east-2nd-checkbox" onchange="updateFlatData('east', 2)">
                 <input type="number" id="east-2nd-persons" value="6" placeholder="No. of persons" onchange="updateFlatData('east', 2)">
-                <input type="number" id="east-2nd-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('east', 2)">
                 <span id="east-2nd-total">Grand Total: 16700 Taka</span>
                 <span id="east-2nd-due">Due: 15500 Taka</span>
             </div>
@@ -124,7 +121,6 @@
                 <span>East Side 3rd Floor</span> - 14500 Taka
                 <input type="checkbox" id="east-3rd-checkbox" onchange="updateFlatData('east', 3)">
                 <input type="number" id="east-3rd-persons" value="7" placeholder="No. of persons" onchange="updateFlatData('east', 3)">
-                <input type="number" id="east-3rd-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('east', 3)">
                 <span id="east-3rd-total">Grand Total: 15900 Taka</span>
                 <span id="east-3rd-due">Due: 14500 Taka</span>
             </div>
@@ -132,7 +128,6 @@
                 <span>East Side 4th Floor</span> - 14400 Taka
                 <input type="checkbox" id="east-4th-checkbox" onchange="updateFlatData('east', 4)">
                 <input type="number" id="east-4th-persons" value="6" placeholder="No. of persons" onchange="updateFlatData('east', 4)">
-                <input type="number" id="east-4th-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('east', 4)">
                 <span id="east-4th-total">Grand Total: 15600 Taka</span>
                 <span id="east-4th-due">Due: 14400 Taka</span>
             </div>
@@ -140,7 +135,6 @@
                 <span>East Side 5th Floor</span> - 14200 Taka
                 <input type="checkbox" id="east-5th-checkbox" onchange="updateFlatData('east', 5)">
                 <input type="number" id="east-5th-persons" value="3" placeholder="No. of persons" onchange="updateFlatData('east', 5)">
-                <input type="number" id="east-5th-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('east', 5)">
                 <span id="east-5th-total">Grand Total: 14800 Taka</span>
                 <span id="east-5th-due">Due: 14200 Taka</span>
             </div>
@@ -148,7 +142,6 @@
                 <span>East Side 6th Floor</span> - 0 Taka (Not rented)
                 <input type="checkbox" id="east-6th-checkbox" onchange="updateFlatData('east', 6)">
                 <input type="number" id="east-6th-persons" value="0" placeholder="No. of persons" onchange="updateFlatData('east', 6)">
-                <input type="number" id="east-6th-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('east', 6)">
                 <span id="east-6th-total">Grand Total: 0 Taka</span>
                 <span id="east-6th-due">Due: 0 Taka</span>
             </div>
@@ -162,7 +155,6 @@
                 <span>West Side Ground Floor</span> - 20500 Taka
                 <input type="checkbox" id="west-ground-checkbox" onchange="updateFlatData('west', 0)">
                 <input type="number" id="west-ground-persons" value="0" placeholder="No. of persons" onchange="updateFlatData('west', 0)">
-                <input type="number" id="west-ground-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('west', 0)">
                 <span id="west-ground-total">Grand Total: 20500 Taka</span>
                 <span id="west-ground-due">Due: 20500 Taka</span>
             </div>
@@ -170,7 +162,6 @@
                 <span>West Side 1st Floor</span> - 16000 Taka
                 <input type="checkbox" id="west-1st-checkbox" onchange="updateFlatData('west', 1)">
                 <input type="number" id="west-1st-persons" value="2" placeholder="No. of persons" onchange="updateFlatData('west', 1)">
-                <input type="number" id="west-1st-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('west', 1)">
                 <span id="west-1st-total">Grand Total: 16400 Taka</span>
                 <span id="west-1st-due">Due: 16000 Taka</span>
             </div>
@@ -178,7 +169,6 @@
                 <span>West Side 2nd Floor</span> - 15000 Taka
                 <input type="checkbox" id="west-2nd-checkbox" onchange="updateFlatData('west', 2)">
                 <input type="number" id="west-2nd-persons" value="8" placeholder="No. of persons" onchange="updateFlatData('west', 2)">
-                <input type="number" id="west-2nd-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('west', 2)">
                 <span id="west-2nd-total">Grand Total: 16600 Taka</span>
                 <span id="west-2nd-due">Due: 15000 Taka</span>
             </div>
@@ -186,7 +176,6 @@
                 <span>West Side 3rd Floor</span> - 14500 Taka
                 <input type="checkbox" id="west-3rd-checkbox" onchange="updateFlatData('west', 3)">
                 <input type="number" id="west-3rd-persons" value="7" placeholder="No. of persons" onchange="updateFlatData('west', 3)">
-                <input type="number" id="west-3rd-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('west', 3)">
                 <span id="west-3rd-total">Grand Total: 15900 Taka</span>
                 <span id="west-3rd-due">Due: 14500 Taka</span>
             </div>
@@ -194,7 +183,6 @@
                 <span>West Side 4th Floor</span> - 14000 Taka
                 <input type="checkbox" id="west-4th-checkbox" onchange="updateFlatData('west', 4)">
                 <input type="number" id="west-4th-persons" value="2" placeholder="No. of persons" onchange="updateFlatData('west', 4)">
-                <input type="number" id="west-4th-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('west', 4)">
                 <span id="west-4th-total">Grand Total: 14400 Taka</span>
                 <span id="west-4th-due">Due: 14000 Taka</span>
             </div>
@@ -202,7 +190,6 @@
                 <span>West Side 5th Floor</span> - 13700 Taka
                 <input type="checkbox" id="west-5th-checkbox" onchange="updateFlatData('west', 5)">
                 <input type="number" id="west-5th-persons" value="4" placeholder="No. of persons" onchange="updateFlatData('west', 5)">
-                <input type="number" id="west-5th-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('west', 5)">
                 <span id="west-5th-total">Grand Total: 14500 Taka</span>
                 <span id="west-5th-due">Due: 13700 Taka</span>
             </div>
@@ -210,7 +197,6 @@
                 <span>West Side 6th Floor</span> - 6000 Taka (Not rented)
                 <input type="checkbox" id="west-6th-checkbox" onchange="updateFlatData('west', 6)">
                 <input type="number" id="west-6th-persons" value="0" placeholder="No. of persons" onchange="updateFlatData('west', 6)">
-                <input type="number" id="west-6th-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('west', 6)">
                 <span id="west-6th-total">Grand Total: 0 Taka</span>
                 <span id="west-6th-due">Due: 0 Taka</span>
             </div>
@@ -299,11 +285,10 @@
     // Function to update flat data (rent received, utility, etc.)
     function updateFlatData(side, floorIndex) {
         let persons = document.getElementById(`${side}-${floorIndex}-persons`).value;
-        let utilityServiceCharge = document.getElementById(`${side}-${floorIndex}-utility-service`).value;
         let checkbox = document.getElementById(`${side}-${floorIndex}-checkbox`);
 
         flatData[side][floorIndex].persons = persons;
-        flatData[side][floorIndex].utilityService = persons * 200 + parseInt(utilityServiceCharge);
+        flatData[side][floorIndex].utilityService = persons * 200;
 
         if (checkbox.checked) {
             flatData[side][floorIndex].received = flatData[side][floorIndex].rent;
