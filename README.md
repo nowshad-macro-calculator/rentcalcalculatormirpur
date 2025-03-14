@@ -25,7 +25,7 @@
         }
         .house-layout {
             display: flex;
-            flex-direction: column-reverse;
+            flex-direction: column;
             align-items: center;
         }
         .floor-row {
@@ -65,6 +65,9 @@
     
     <div class="summary">
         <h3>Summary</h3>
+        <label>Salary: <input type="number" id="salary" value="10000" onchange="updateSummary()"></label><br>
+        <label>Misc Electricity Bill: <input type="number" id="electricity-bill" value="1000" onchange="updateSummary()"></label><br>
+        <label>Water Bill: <input type="number" id="water-bill" value="8000" onchange="updateSummary()"></label><br>
         <div id="summary-details"></div>
         <button class="button" onclick="generatePDF()">Export to PDF</button>
     </div>
@@ -121,11 +124,19 @@
             });
         }
 
+        let salary = parseInt(document.getElementById("salary").value);
+        let electricityBill = parseInt(document.getElementById("electricity-bill").value);
+        let waterBill = parseInt(document.getElementById("water-bill").value);
+        let totalExpenses = salary + electricityBill + waterBill;
+        let netIncome = receivedRent - totalExpenses;
+
         document.getElementById("summary-details").innerHTML = `
             <p>Total Rent: ${totalRent} Taka</p>
             <p>Total Utility: ${totalUtility} Taka</p>
             <p>Rent Received: ${receivedRent} Taka</p>
             <p>Total Due: ${totalDue} Taka</p>
+            <p>Total Expenses: ${totalExpenses} Taka</p>
+            <p>Net Income: ${netIncome} Taka</p>
         `;
     }
 
