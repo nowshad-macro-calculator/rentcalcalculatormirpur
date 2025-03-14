@@ -25,15 +25,18 @@
         }
         .house-layout {
             display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+        }
+        .floor-row {
+            display: flex;
+            width: 80%;
             justify-content: space-between;
-            flex-wrap: wrap;
+            margin-bottom: 5px;
         }
-        .side {
+        .unit {
             width: 48%;
-        }
-        .floor {
             padding: 10px;
-            margin: 5px;
             background-color: #e8e8e8;
             text-align: center;
             border-radius: 5px;
@@ -53,89 +56,76 @@
             border-radius: 5px;
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
 <div class="container">
     <h1>Mirpur House Rent Calculator</h1>
     <div class="house-layout" id="house-layout"></div>
-
+    
     <div class="summary">
         <h3>Summary</h3>
-        <label>Salary: <input type="number" id="salary" value="10000" onchange="updateSummary()"></label><br>
-        <label>Misc Electricity Bill: <input type="number" id="electricity-bill" value="1000" onchange="updateSummary()"></label><br>
-        <label>Water Bill: <input type="number" id="water-bill" value="8000" onchange="updateSummary()"></label><br>
         <div id="summary-details"></div>
         <button class="button" onclick="generatePDF()">Export to PDF</button>
     </div>
 </div>
 
 <script>
-    const flats = [
-        { side: "East", floor: "Ground", rent: 19000, persons: 0 },
-        { side: "East", floor: "1st", rent: 15500, persons: 5 },
-        { side: "East", floor: "2nd", rent: 15500, persons: 6 },
-        { side: "East", floor: "3rd", rent: 14500, persons: 7 },
-        { side: "East", floor: "4th", rent: 14400, persons: 6 },
-        { side: "East", floor: "5th", rent: 14200, persons: 3 },
-        { side: "West", floor: "Ground", rent: 20500, persons: 0 },
-        { side: "West", floor: "1st", rent: 16000, persons: 2 },
-        { side: "West", floor: "2nd", rent: 15000, persons: 8 },
-        { side: "West", floor: "3rd", rent: 14500, persons: 7 },
-        { side: "West", floor: "4th", rent: 14000, persons: 2 },
-        { side: "West", floor: "5th", rent: 13700, persons: 4 },
-        { side: "West", floor: "6th", rent: 6000, persons: 0 }
-    ];
+    const floors = ["Ground", "1st", "2nd", "3rd", "4th", "5th", "6th"];
+    const flats = {
+        "East": [19000, 15500, 15500, 14500, 14400, 14200, 0],
+        "West": [20500, 16000, 15000, 14500, 14000, 13700, 6000]
+    };
 
     function renderHouse() {
         const layout = document.getElementById("house-layout");
         layout.innerHTML = "";
-        flats.forEach((flat, index) => {
+        for (let i = 6; i >= 0; i--) {
             layout.innerHTML += `
-                <div class="floor">
-                    <h4>${flat.side} ${flat.floor} Floor</h4>
-                    Rent: ${flat.rent} Taka<br>
-                    Persons: <input type="number" value="${flat.persons}" id="persons-${index}" onchange="updateSummary()">
-                    <br>Rent Received: <select id="rent-${index}" onchange="updateSummary()">
-                        <option value="no">No</option>
-                        <option value="yes">Yes</option>
-                    </select>
+                <div class="floor-row">
+                    <div class="unit">
+                        <h4>East ${floors[i]} Floor</h4>
+                        Rent: ${flats["East"][i]} Taka<br>
+                        Persons: <input type="number" value="0" id="east-${i}-persons" onchange="updateSummary()">
+                        <br>Rent Received: <select id="east-${i}-rent" onchange="updateSummary()">
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                    <div class="unit">
+                        <h4>West ${floors[i]} Floor</h4>
+                        Rent: ${flats["West"][i]} Taka<br>
+                        Persons: <input type="number" value="0" id="west-${i}-persons" onchange="updateSummary()">
+                        <br>Rent Received: <select id="west-${i}-rent" onchange="updateSummary()">
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
                 </div>`;
-        });
+        }
     }
 
     function updateSummary() {
-        let totalRent = 0, totalUtility = 0, receivedRent = 0;
-        flats.forEach((flat, index) => {
-            flat.persons = parseInt(document.getElementById(`persons-${index}`).value || 0);
-            let rentReceived = document.getElementById(`rent-${index}`).value === "yes";
-            let utility = flat.persons * 200;
-            totalRent += flat.rent;
-            totalUtility += utility;
-            if (rentReceived) receivedRent += flat.rent;
-        });
-        
-        let salary = parseInt(document.getElementById("salary").value);
-        let electricityBill = parseInt(document.getElementById("electricity-bill").value);
-        let waterBill = parseInt(document.getElementById("water-bill").value);
-        let totalExpenses = salary + electricityBill + waterBill;
-        let netIncome = receivedRent - totalExpenses;
-        let wifeShare = netIncome * 0.125;
-        let sonShare = netIncome * 0.5833;
-        let daughterShare = netIncome * 0.2917;
+        let totalRent = 0, totalUtility = 0, receivedRent = 0, totalDue = 0;
+        for (let i = 0; i <= 6; i++) {
+            ["East", "West"].forEach(side => {
+                let rent = flats[side][i];
+                let persons = parseInt(document.getElementById(`${side.toLowerCase()}-${i}-persons`).value || 0);
+                let rentReceived = document.getElementById(`${side.toLowerCase()}-${i}-rent`).value === "yes";
+                let utility = persons * 200;
+                
+                totalRent += rent;
+                totalUtility += utility;
+                if (rentReceived) receivedRent += rent;
+                else totalDue += rent;
+            });
+        }
 
         document.getElementById("summary-details").innerHTML = `
             <p>Total Rent: ${totalRent} Taka</p>
             <p>Total Utility: ${totalUtility} Taka</p>
             <p>Rent Received: ${receivedRent} Taka</p>
-            <p>Total Due: ${totalRent - receivedRent} Taka</p>
-            <p>Total Expenses: ${totalExpenses} Taka</p>
-            <p>Net Income: ${netIncome} Taka</p>
-            <h4>Inheritance Distribution:</h4>
-            <p>Wife: ${wifeShare.toFixed(2)} Taka</p>
-            <p>Son: ${sonShare.toFixed(2)} Taka</p>
-            <p>Daughter: ${daughterShare.toFixed(2)} Taka</p>
+            <p>Total Due: ${totalDue} Taka</p>
         `;
     }
 
