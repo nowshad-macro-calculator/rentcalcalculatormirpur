@@ -7,183 +7,141 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
         }
         .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007BFF;
+        }
+        .house-layout {
             display: flex;
             justify-content: space-between;
+            flex-wrap: wrap;
         }
         .side {
-            width: 45%;
+            width: 48%;
         }
         .floor {
-            margin: 10px 0;
+            padding: 10px;
+            margin: 5px;
+            background-color: #e8e8e8;
+            text-align: center;
+            border-radius: 5px;
         }
         .summary {
-            margin-top: 20px;
-            border: 1px solid #ccc;
-            padding: 10px;
+            margin-top: 30px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #FF5733;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
-<h1>Mirpur House Rent Calculator</h1>
-
 <div class="container">
-    <div class="side" id="east-side">
-        <h2>East Side</h2>
-        <div class="floor">
-            <label>Ground Floor: 19000 Taka</label>
-            <select>
-                <option value="no">Rent Received: No</option>
-                <option value="yes">Rent Received: Yes</option>
-            </select>
-            <span>Total Payable: 19000 Taka</span>
-        </div>
-        <div class="floor">
-            <label>1st Floor: 15500 Taka</label>
-            <input type="number" value="5" min="0"> persons
-            <select>
-                <option value="no">Rent Received: No</option>
-                <option value="yes">Rent Received: Yes</option>
-            </select>
-            <span>Total Payable: 15500 + 1000 Taka</span>
-        </div>
-        <div class="floor">
-            <label>2nd Floor: 15500 Taka</label>
-            <input type="number" value="6" min="0"> persons
-            <select>
-                <option value="no">Rent Received: No</option>
-                <option value="yes">Rent Received: Yes</option>
-            </select>
-            <span>Total Payable: 15500 + 1200 Taka</span>
-        </div>
-        <div class="floor">
-            <label>3rd Floor: 14500 Taka</label>
-            <input type="number" value="7" min="0"> persons
-            <select>
-                <option value="no">Rent Received: No</option>
-                <option value="yes">Rent Received: Yes</option>
-            </select>
-            <span>Total Payable: 14500 + 1400 Taka</span>
-        </div>
-        <div class="floor">
-            <label>4th Floor: 14400 Taka</label>
-            <input type="number" value="6" min="0"> persons
-            <select>
-                <option value="no">Rent Received: No</option>
-                <option value="yes">Rent Received: Yes</option>
-            </select>
-            <span>Total Payable: 14400 + 1200 Taka</span>
-        </div>
-        <div class="floor">
-            <label>5th Floor: 14200 Taka</label>
-            <input type="number" value="3" min="0"> persons
-            <select>
-                <option value="no">Rent Received: No</option>
-                <option value="yes">Rent Received: Yes</option>
-            </select>
-            <span>Total Payable: 14200 + 600 Taka</span>
-        </div>
+    <h1>Mirpur House Rent Calculator</h1>
+    <div class="house-layout" id="house-layout"></div>
+
+    <div class="summary">
+        <h3>Summary</h3>
+        <div id="summary-details"></div>
+        <button class="button" onclick="generatePDF()">Export to PDF</button>
     </div>
-
-    <div class="side" id="west-side">
-        <h2>West Side</h2>
-        <div class="floor">
-            <label>Ground Floor: 20500 Taka</label>
-            <select>
-                <option value="no">Rent Received: No</option>
-                <option value="yes">Rent Received: Yes</option>
-            </select>
-            <span>Total Payable: 20500 Taka</span>
-        </div>
-        <div class="floor">
-            <label>1st Floor: 16000 Taka</label>
-            <input type="number" value="2" min="0"> persons
-            <select>
-                <option value="no">Rent Received: No</option>
-                <option value="yes">Rent Received: Yes</option>
-            </select>
-            <span>Total Payable: 16000 + 400 Taka</span>
-        </div>
-        <div class="floor">
-            <label>2nd Floor: 15000 Taka</label>
-            <input type="number" value="8" min="0"> persons
-            <select>
-                <option value="no">Rent Received: No</option>
-                <option value="yes">Rent Received: Yes</option>
-            </select>
-            <span>Total Payable: 15000 + 1600 Taka</span>
-        </div>
-        <div class="floor">
-            <label>3rd Floor: 14500 Taka</label>
-            <input type="number" value="7" min="0"> persons
-            <select>
-                <option value="no">Rent Received: No</option>
-                <option value="yes">Rent Received: Yes</option>
-            </select>
-            <span>Total Payable: 14500 + 1400 Taka</span>
-        </div>
-        <div class="floor">
-            <label>4th Floor: 14000 Taka</label>
-            <input type="number" value="2" min="0"> persons
-            <select>
-                <option value="no">Rent Received: No</option>
-                <option value="yes">Rent Received: Yes</option>
-            </select>
-            <span>Total Payable: 14000 + 400 Taka</span>
-        </div>
-        <div class="floor">
-            <label>5th Floor: 13700 Taka</label>
-            <input type="number" value="4" min="0"> persons
-            <select>
-                <option value="no">Rent Received: No</option>
-                <option value="yes">Rent Received: Yes</option>
-            </select>
-            <span>Total Payable: 13700 + 800 Taka</span>
-        </div>
-        <div class="floor">
-            <label>6th Floor: 6000 Taka</label>
-            <select>
-                <option value="no">Rent Received: No</option>
-                <option value="yes">Rent Received: Yes</option>
-            </select>
-            <span>Total Payable: 6000 Taka</span>
-        </div>
-    </div>
-</div>
-
-<div class="summary">
-    <h3>Summary</h3>
-    <label>Total Rent Received: <span id="total-rent">0</span> Taka</label><br>
-    <label>Total Utility & Service Charge: <span id="total-utility">0</span> Taka</label><br>
-    <label>Total Expenses: <span id="total-expenses">0</span> Taka</label><br>
-    <label>Total After Expenses: <span id="total-after-expenses">0</span> Taka</label><br>
-    <label>Inheritance Distribution:</label><br>
-    <label>Wife: <span id="wife-share">0</span> Taka</label><br>
-    <label>Son: <span id="son-share">0</span> Taka</label><br>
-    <label>Daughter: <span id="daughter-share">0</span> Taka</label><br>
-</div>
-
-<div>
-    <h3>Expenses</h3>
-    <label>Staff Salary: <input type="number" value="10000" id="staff-salary"></label><br>
-    <label>Water Bill: <input type="number" value="8000" id="water-bill"></label><br>
-    <label>Common Electricity Bill: <input type="number" value="1000" id="electricity-bill"></label><br>
-    <button id="calculate-button">Calculate Now</button>
-    <button id="summary-button">Generate Summary</button>
 </div>
 
 <script>
-    document.getElementById('calculate-button').addEventListener('click', function() {
-        // Calculation logic goes here
-    });
+    const flats = [
+        { side: "East", floor: "Ground", rent: 19000, persons: 0 },
+        { side: "East", floor: "1st", rent: 15500, persons: 5 },
+        { side: "East", floor: "2nd", rent: 15500, persons: 6 },
+        { side: "East", floor: "3rd", rent: 14500, persons: 7 },
+        { side: "East", floor: "4th", rent: 14400, persons: 6 },
+        { side: "East", floor: "5th", rent: 14200, persons: 3 },
+        { side: "West", floor: "Ground", rent: 20500, persons: 0 },
+        { side: "West", floor: "1st", rent: 16000, persons: 2 },
+        { side: "West", floor: "2nd", rent: 15000, persons: 8 },
+        { side: "West", floor: "3rd", rent: 14500, persons: 7 },
+        { side: "West", floor: "4th", rent: 14000, persons: 2 },
+        { side: "West", floor: "5th", rent: 13700, persons: 4 },
+        { side: "West", floor: "6th", rent: 6000, persons: 0 }
+    ];
 
-    document.getElementById('summary-button').addEventListener('click', function() {
-        // Summary generation logic goes here
-    });
+    function renderHouse() {
+        const layout = document.getElementById("house-layout");
+        layout.innerHTML = "";
+        flats.forEach((flat, index) => {
+            layout.innerHTML += `
+                <div class="floor">
+                    <h4>${flat.side} ${flat.floor} Floor</h4>
+                    Rent: ${flat.rent} Taka<br>
+                    Persons: <input type="number" value="${flat.persons}" id="persons-${index}" onchange="updateSummary()">
+                    <br>Rent Received: <select id="rent-${index}" onchange="updateSummary()">
+                        <option value="no">No</option>
+                        <option value="yes">Yes</option>
+                    </select>
+                </div>`;
+        });
+    }
+
+    function updateSummary() {
+        let totalRent = 0, totalUtility = 0, receivedRent = 0;
+        flats.forEach((flat, index) => {
+            flat.persons = parseInt(document.getElementById(`persons-${index}`).value || 0);
+            let rentReceived = document.getElementById(`rent-${index}`).value === "yes";
+            let utility = flat.persons * 200;
+            totalRent += flat.rent;
+            totalUtility += utility;
+            if (rentReceived) receivedRent += flat.rent;
+        });
+        
+        let totalExpenses = 10000; // Salary
+        let netIncome = receivedRent - totalExpenses;
+        let wifeShare = netIncome * 0.125;
+        let sonShare = netIncome * 0.5833;
+        let daughterShare = netIncome * 0.2917;
+
+        document.getElementById("summary-details").innerHTML = `
+            <p>Total Rent: ${totalRent} Taka</p>
+            <p>Total Utility: ${totalUtility} Taka</p>
+            <p>Rent Received: ${receivedRent} Taka</p>
+            <p>Total Due: ${totalRent - receivedRent} Taka</p>
+            <p>Total Expenses: ${totalExpenses} Taka</p>
+            <p>Net Income: ${netIncome} Taka</p>
+            <h4>Inheritance Distribution:</h4>
+            <p>Wife: ${wifeShare.toFixed(2)} Taka</p>
+            <p>Son: ${sonShare.toFixed(2)} Taka</p>
+            <p>Daughter: ${daughterShare.toFixed(2)} Taka</p>
+        `;
+    }
+
+    function generatePDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        doc.text("Mirpur House Rent Summary", 10, 10);
+        doc.text(document.getElementById("summary-details").innerText, 10, 20);
+        doc.save("Mirpur_House_Rent_Summary.pdf");
+    }
+
+    window.onload = () => { renderHouse(); updateSummary(); };
 </script>
-
 </body>
 </html>
