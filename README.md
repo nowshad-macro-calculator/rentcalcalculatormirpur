@@ -88,11 +88,6 @@
 <body>
 
 <div class="container">
-    <!-- Language Toggle Button -->
-    <div class="language-toggle">
-        <button class="button" onclick="toggleLanguage()">Switch to Bangla</button>
-    </div>
-
     <h1 id="page-title">Mirpur House Rent Calculator</h1>
 
     <!-- House Layout (East and West Sides) -->
@@ -100,18 +95,17 @@
         <!-- East Side -->
         <div class="side">
             <h3 id="east-side-title">East Side</h3>
-            <!-- Flat entries -->
+            <!-- Flats from Ground to 6th Floor -->
             <div class="floor" id="east-ground">
-                <span id="east-ground-name">East Side Ground Floor</span> - 19000 Taka
+                <span>East Side Ground Floor</span> - 19000 Taka
                 <input type="checkbox" id="east-ground-checkbox" onchange="updateFlatData('east', 0)">
                 <input type="number" id="east-ground-persons" value="0" placeholder="No. of persons" onchange="updateFlatData('east', 0)">
                 <input type="number" id="east-ground-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('east', 0)">
                 <span id="east-ground-total">Grand Total: 19000 Taka</span>
                 <span id="east-ground-due">Due: 19000 Taka</span>
             </div>
-            <!-- Repeat for other East side floors (1st, 2nd, etc.) -->
             <div class="floor" id="east-1st">
-                <span id="east-1st-name">East Side 1st Floor</span> - 15500 Taka
+                <span>East Side 1st Floor</span> - 15500 Taka
                 <input type="checkbox" id="east-1st-checkbox" onchange="updateFlatData('east', 1)">
                 <input type="number" id="east-1st-persons" value="5" placeholder="No. of persons" onchange="updateFlatData('east', 1)">
                 <input type="number" id="east-1st-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('east', 1)">
@@ -124,18 +118,17 @@
         <!-- West Side -->
         <div class="side">
             <h3 id="west-side-title">West Side</h3>
-            <!-- Flat entries -->
+            <!-- Flats from Ground to 6th Floor -->
             <div class="floor" id="west-ground">
-                <span id="west-ground-name">West Side Ground Floor</span> - 20500 Taka
+                <span>West Side Ground Floor</span> - 20500 Taka
                 <input type="checkbox" id="west-ground-checkbox" onchange="updateFlatData('west', 0)">
                 <input type="number" id="west-ground-persons" value="0" placeholder="No. of persons" onchange="updateFlatData('west', 0)">
                 <input type="number" id="west-ground-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('west', 0)">
                 <span id="west-ground-total">Grand Total: 20500 Taka</span>
                 <span id="west-ground-due">Due: 20500 Taka</span>
             </div>
-            <!-- Repeat for other West side floors (1st, 2nd, etc.) -->
             <div class="floor" id="west-1st">
-                <span id="west-1st-name">West Side 1st Floor</span> - 16000 Taka
+                <span>West Side 1st Floor</span> - 16000 Taka
                 <input type="checkbox" id="west-1st-checkbox" onchange="updateFlatData('west', 1)">
                 <input type="number" id="west-1st-persons" value="2" placeholder="No. of persons" onchange="updateFlatData('west', 1)">
                 <input type="number" id="west-1st-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('west', 1)">
@@ -224,53 +217,6 @@
             { rent: 6000, persons: 0, received: 0, utilityService: 0, grandTotal: 6000, due: 6000 }
         ]
     };
-
-    let language = 'en';  // Default language is English
-
-    // Function to switch between English and Bangla
-    function toggleLanguage() {
-        if (language === 'en') {
-            language = 'bn';
-            document.getElementById('page-title').innerText = 'মিরপুর হাউস ভাড়া ক্যালকুলেটর';
-            document.getElementById('east-side-title').innerText = 'পূর্ব দিক';
-            document.getElementById('west-side-title').innerText = 'পশ্চিম দিক';
-            document.getElementById('summary-title').innerText = 'সারাংশ';
-            document.getElementById('salary-deduction-label').innerText = 'বেতন কর্তন (১০০০০ টাকা):';
-            document.getElementById('water-bill-label').innerText = 'পানি বিল:';
-            document.getElementById('electricity-bill-label').innerText = 'বিদ্যুৎ বিল:';
-            document.getElementById('total-rent-received-label').innerText = 'মোট ভাড়া পাওয়া:';
-            document.getElementById('total-expenses-label').innerText = 'মোট খরচ:';
-            document.getElementById('total-after-expenses-label').innerText = 'খরচ পরবর্তী মোট:';
-            document.getElementById('inheritance-title').innerText = 'ঐশ্বর্যের বিতরণ';
-            document.getElementById('wife-share-label').innerText = 'মা পাবেন:';
-            document.getElementById('son-share-label').innerText = 'ছেলে পাবেন:';
-            document.getElementById('daughter-share-label').innerText = 'মেয়ে পাবেন:';
-            document.getElementById('total-rent-label').innerText = 'মোট ভাড়া:';
-            document.getElementById('total-utility-service-label').innerText = 'মোট ইউটিলিটি ও সেবার চার্জ:';
-            document.getElementById('total-grand-total-label').innerText = 'মোট গ্র্যান্ড টোটাল:';
-            document.querySelector('.language-toggle button').innerText = 'Switch to English';
-        } else {
-            language = 'en';
-            document.getElementById('page-title').innerText = 'Mirpur House Rent Calculator';
-            document.getElementById('east-side-title').innerText = 'East Side';
-            document.getElementById('west-side-title').innerText = 'West Side';
-            document.getElementById('summary-title').innerText = 'Summary';
-            document.getElementById('salary-deduction-label').innerText = 'Salary Deduction (10000 Taka):';
-            document.getElementById('water-bill-label').innerText = 'Water Bill:';
-            document.getElementById('electricity-bill-label').innerText = 'Electricity Bill:';
-            document.getElementById('total-rent-received-label').innerText = 'Total Rent Received:';
-            document.getElementById('total-expenses-label').innerText = 'Total Expenses:';
-            document.getElementById('total-after-expenses-label').innerText = 'Total After Expenses:';
-            document.getElementById('inheritance-title').innerText = 'Inheritance Distribution';
-            document.getElementById('wife-share-label').innerText = 'Wife gets:';
-            document.getElementById('son-share-label').innerText = 'Son gets:';
-            document.getElementById('daughter-share-label').innerText = 'Daughter gets:';
-            document.getElementById('total-rent-label').innerText = 'Total Rent:';
-            document.getElementById('total-utility-service-label').innerText = 'Total Utility & Service Charge:';
-            document.getElementById('total-grand-total-label').innerText = 'Total Grand Total:';
-            document.querySelector('.language-toggle button').innerText = 'Switch to Bangla';
-        }
-    }
 
     // Function to update flat data (rent received, utility, etc.)
     function updateFlatData(side, floorIndex) {
