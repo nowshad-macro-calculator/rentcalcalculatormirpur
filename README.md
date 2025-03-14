@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+final
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -318,7 +318,7 @@
     function updateFlatData(side, floorIndex) {
         const flat = flatData[side][floorIndex];
         flat.received = document.getElementById(`${side}-${floorIndex}-received`).value;
-        flat.persons = parseInt(document.getElementById(`${side}-${floorIndex}-persons`).value || 0;
+        flat.persons = parseInt(document.getElementById(`${side}-${floorIndex}-persons`).value || 0);
         flat.utility = flat.persons * 200;
         flat.due = flat.received === 'yes' ? 0 : flat.rent;
 
