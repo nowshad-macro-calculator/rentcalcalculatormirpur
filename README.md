@@ -63,6 +63,9 @@
 
     <div class="summary">
         <h3>Summary</h3>
+        <label>Salary: <input type="number" id="salary" value="10000" onchange="updateSummary()"></label><br>
+        <label>Misc Electricity Bill: <input type="number" id="electricity-bill" value="1000" onchange="updateSummary()"></label><br>
+        <label>Water Bill: <input type="number" id="water-bill" value="8000" onchange="updateSummary()"></label><br>
         <div id="summary-details"></div>
         <button class="button" onclick="generatePDF()">Export to PDF</button>
     </div>
@@ -113,7 +116,10 @@
             if (rentReceived) receivedRent += flat.rent;
         });
         
-        let totalExpenses = 10000; // Salary
+        let salary = parseInt(document.getElementById("salary").value);
+        let electricityBill = parseInt(document.getElementById("electricity-bill").value);
+        let waterBill = parseInt(document.getElementById("water-bill").value);
+        let totalExpenses = salary + electricityBill + waterBill;
         let netIncome = receivedRent - totalExpenses;
         let wifeShare = netIncome * 0.125;
         let sonShare = netIncome * 0.5833;
