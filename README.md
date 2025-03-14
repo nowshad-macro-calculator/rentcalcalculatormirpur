@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+Mirpur House Rent Calculator
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -79,6 +79,10 @@
         "East": [19000, 15500, 15500, 14500, 14400, 14200, 0],
         "West": [20500, 16000, 15000, 14500, 14000, 13700, 6000]
     };
+    const personsDefault = {
+        "East": [0, 5, 6, 7, 6, 3, 0],
+        "West": [0, 2, 8, 7, 2, 4, 0]
+    };
 
     function renderHouse() {
         const layout = document.getElementById("house-layout");
@@ -89,7 +93,7 @@
                     <div class="unit">
                         <h4>East ${floors[i]} Floor</h4>
                         Rent: ${flats["East"][i]} Taka<br>
-                        Persons: <input type="number" value="0" id="east-${i}-persons" onchange="updateSummary()">
+                        Persons: <input type="number" value="${personsDefault["East"][i]}" id="east-${i}-persons" onchange="updateSummary()">
                         <br>Rent Received: <select id="east-${i}-rent" onchange="updateSummary()">
                             <option value="no">No</option>
                             <option value="yes">Yes</option>
@@ -98,7 +102,7 @@
                     <div class="unit">
                         <h4>West ${floors[i]} Floor</h4>
                         Rent: ${flats["West"][i]} Taka<br>
-                        Persons: <input type="number" value="0" id="west-${i}-persons" onchange="updateSummary()">
+                        Persons: <input type="number" value="${personsDefault["West"][i]}" id="west-${i}-persons" onchange="updateSummary()">
                         <br>Rent Received: <select id="west-${i}-rent" onchange="updateSummary()">
                             <option value="no">No</option>
                             <option value="yes">Yes</option>
