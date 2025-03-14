@@ -1,5 +1,4 @@
-Nowshad's Mirpur Rent Calculator 
-
+Nowshad's Mirpur Rent Calculator
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -101,7 +100,7 @@ Nowshad's Mirpur Rent Calculator
         <div class="side">
             <h3>East Side</h3>
             <div class="floor" id="east-ground">
-                Ground Floor - 19000 Taka
+                East Side Ground Floor - 19000 Taka
                 <input type="checkbox" id="east-ground-checkbox">
                 <input type="number" id="east-ground-persons" value="0" placeholder="No. of persons" onchange="updateFlatData('east', 0)">
                 <input type="number" id="east-ground-service" value="0" placeholder="Service Charge" onchange="updateFlatData('east', 0)">
@@ -109,7 +108,7 @@ Nowshad's Mirpur Rent Calculator
                 <span id="east-ground-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="east-1st">
-                1st Floor - 15500 Taka
+                East Side 1st Floor - 15500 Taka
                 <input type="checkbox" id="east-1st-checkbox">
                 <input type="number" id="east-1st-persons" value="5" placeholder="No. of persons" onchange="updateFlatData('east', 1)">
                 <input type="number" id="east-1st-service" value="0" placeholder="Service Charge" onchange="updateFlatData('east', 1)">
@@ -117,7 +116,7 @@ Nowshad's Mirpur Rent Calculator
                 <span id="east-1st-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="east-2nd">
-                2nd Floor - 15500 Taka
+                East Side 2nd Floor - 15500 Taka
                 <input type="checkbox" id="east-2nd-checkbox">
                 <input type="number" id="east-2nd-persons" value="6" placeholder="No. of persons" onchange="updateFlatData('east', 2)">
                 <input type="number" id="east-2nd-service" value="0" placeholder="Service Charge" onchange="updateFlatData('east', 2)">
@@ -125,7 +124,7 @@ Nowshad's Mirpur Rent Calculator
                 <span id="east-2nd-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="east-3rd">
-                3rd Floor - 14500 Taka
+                East Side 3rd Floor - 14500 Taka
                 <input type="checkbox" id="east-3rd-checkbox">
                 <input type="number" id="east-3rd-persons" value="7" placeholder="No. of persons" onchange="updateFlatData('east', 3)">
                 <input type="number" id="east-3rd-service" value="0" placeholder="Service Charge" onchange="updateFlatData('east', 3)">
@@ -133,7 +132,7 @@ Nowshad's Mirpur Rent Calculator
                 <span id="east-3rd-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="east-4th">
-                4th Floor - 14400 Taka
+                East Side 4th Floor - 14400 Taka
                 <input type="checkbox" id="east-4th-checkbox">
                 <input type="number" id="east-4th-persons" value="6" placeholder="No. of persons" onchange="updateFlatData('east', 4)">
                 <input type="number" id="east-4th-service" value="0" placeholder="Service Charge" onchange="updateFlatData('east', 4)">
@@ -141,7 +140,7 @@ Nowshad's Mirpur Rent Calculator
                 <span id="east-4th-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="east-5th">
-                5th Floor - 14200 Taka
+                East Side 5th Floor - 14200 Taka
                 <input type="checkbox" id="east-5th-checkbox">
                 <input type="number" id="east-5th-persons" value="3" placeholder="No. of persons" onchange="updateFlatData('east', 5)">
                 <input type="number" id="east-5th-service" value="0" placeholder="Service Charge" onchange="updateFlatData('east', 5)">
@@ -149,7 +148,7 @@ Nowshad's Mirpur Rent Calculator
                 <span id="east-5th-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="east-6th">
-                6th Floor - 0 Taka (Not rented)
+                East Side 6th Floor - 0 Taka (Not rented)
                 <input type="checkbox" id="east-6th-checkbox">
                 <input type="number" id="east-6th-persons" value="0" placeholder="No. of persons" onchange="updateFlatData('east', 6)">
                 <input type="number" id="east-6th-service" value="0" placeholder="Service Charge" onchange="updateFlatData('east', 6)">
@@ -162,7 +161,7 @@ Nowshad's Mirpur Rent Calculator
         <div class="side">
             <h3>West Side</h3>
             <div class="floor" id="west-ground">
-                Ground Floor - 20500 Taka
+                West Side Ground Floor - 20500 Taka
                 <input type="checkbox" id="west-ground-checkbox">
                 <input type="number" id="west-ground-persons" value="0" placeholder="No. of persons" onchange="updateFlatData('west', 0)">
                 <input type="number" id="west-ground-service" value="0" placeholder="Service Charge" onchange="updateFlatData('west', 0)">
@@ -170,7 +169,7 @@ Nowshad's Mirpur Rent Calculator
                 <span id="west-ground-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="west-1st">
-                1st Floor - 16000 Taka
+                West Side 1st Floor - 16000 Taka
                 <input type="checkbox" id="west-1st-checkbox">
                 <input type="number" id="west-1st-persons" value="2" placeholder="No. of persons" onchange="updateFlatData('west', 1)">
                 <input type="number" id="west-1st-service" value="0" placeholder="Service Charge" onchange="updateFlatData('west', 1)">
@@ -178,7 +177,7 @@ Nowshad's Mirpur Rent Calculator
                 <span id="west-1st-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="west-2nd">
-                2nd Floor - 15000 Taka
+                West Side 2nd Floor - 15000 Taka
                 <input type="checkbox" id="west-2nd-checkbox">
                 <input type="number" id="west-2nd-persons" value="8" placeholder="No. of persons" onchange="updateFlatData('west', 2)">
                 <input type="number" id="west-2nd-service" value="0" placeholder="Service Charge" onchange="updateFlatData('west', 2)">
@@ -186,7 +185,7 @@ Nowshad's Mirpur Rent Calculator
                 <span id="west-2nd-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="west-3rd">
-                3rd Floor - 14500 Taka
+                West Side 3rd Floor - 14500 Taka
                 <input type="checkbox" id="west-3rd-checkbox">
                 <input type="number" id="west-3rd-persons" value="7" placeholder="No. of persons" onchange="updateFlatData('west', 3)">
                 <input type="number" id="west-3rd-service" value="0" placeholder="Service Charge" onchange="updateFlatData('west', 3)">
@@ -194,7 +193,7 @@ Nowshad's Mirpur Rent Calculator
                 <span id="west-3rd-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="west-4th">
-                4th Floor - 14000 Taka
+                West Side 4th Floor - 14000 Taka
                 <input type="checkbox" id="west-4th-checkbox">
                 <input type="number" id="west-4th-persons" value="2" placeholder="No. of persons" onchange="updateFlatData('west', 4)">
                 <input type="number" id="west-4th-service" value="0" placeholder="Service Charge" onchange="updateFlatData('west', 4)">
@@ -202,7 +201,7 @@ Nowshad's Mirpur Rent Calculator
                 <span id="west-4th-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="west-5th">
-                5th Floor - 13700 Taka
+                West Side 5th Floor - 13700 Taka
                 <input type="checkbox" id="west-5th-checkbox">
                 <input type="number" id="west-5th-persons" value="4" placeholder="No. of persons" onchange="updateFlatData('west', 5)">
                 <input type="number" id="west-5th-service" value="0" placeholder="Service Charge" onchange="updateFlatData('west', 5)">
@@ -210,7 +209,7 @@ Nowshad's Mirpur Rent Calculator
                 <span id="west-5th-total">Grand Total: 0 Taka</span>
             </div>
             <div class="floor" id="west-6th">
-                6th Floor - 6000 Taka
+                West Side 6th Floor - 6000 Taka
                 <input type="checkbox" id="west-6th-checkbox">
                 <input type="number" id="west-6th-persons" value="0" placeholder="No. of persons" onchange="updateFlatData('west', 6)">
                 <input type="number" id="west-6th-service" value="0" placeholder="Service Charge" onchange="updateFlatData('west', 6)">
@@ -237,6 +236,7 @@ Nowshad's Mirpur Rent Calculator
                 <!-- Summary rows will be populated here -->
             </tbody>
         </table>
+
         <div class="input-field">
             <label for="salary-deduction">Salary Deduction (10000 Taka): </label>
             <input type="number" id="salary-deduction" value="10000" onchange="updateTotal()">
