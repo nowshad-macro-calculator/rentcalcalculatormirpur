@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+Nowshad's Mirpur Rent Calculator 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -191,27 +191,24 @@
         </div>
     </div>
 
-    <!-- Calculate Button -->
-    <div class="record-section">
-        <button class="button" onclick="calculateRent()">Calculate</button>
-    </div>
-
     <!-- Summary Section -->
     <div class="summary">
         <h3>Summary</h3>
         <table>
-            <tr>
-                <th>Flat</th>
-                <th>Rent</th>
-                <th>Utility Bill</th>
-                <th>Received Rent</th>
-                <th>Due Rent</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Flat</th>
+                    <th>Rent</th>
+                    <th>Utility Bill</th>
+                    <th>Total Amount</th>
+                    <th>Received Rent</th>
+                    <th>Due Rent</th>
+                </tr>
+            </thead>
             <tbody id="summary-tbody">
                 <!-- Summary rows will be populated here -->
             </tbody>
         </table>
-
         <div class="input-field">
             <label for="salary-deduction">Salary Deduction (10000 Taka): </label>
             <input type="number" id="salary-deduction" value="10000" onchange="updateTotal()">
@@ -227,6 +224,10 @@
             <input type="number" id="electricity-bill" value="0" onchange="updateTotal()">
         </div>
 
+        <div class="record-section">
+            <button class="button" onclick="calculateExpenses()">Calculate After Expenses</button>
+        </div>
+
         <h4>Total After Deductions: <span id="final-total">0</span></h4>
         <h4>Amount Distribution</h4>
         <p>Wife gets: <span id="wife-share">0</span></p>
@@ -234,10 +235,6 @@
         <p>Daughter gets: <span id="daughter-share">0</span></p>
     </div>
 
-    <!-- Export Button -->
-    <div class="record-section">
-        <button class="button" onclick="exportReport()">Export Report</button>
-    </div>
 </div>
 
 <script>
@@ -269,33 +266,43 @@
         document.getElementById(`${side}-${floorIndex}-utility`).innerText = `Utility Bill: ${flatData[side][floorIndex].utility} Taka`;
     }
 
-    function calculateRent() {
-        let rentReceived = confirm("Has the rent been received?");
-        if (rentReceived) {
-            let totalReceived = 0;
-            let totalExpenses = parseInt(document.getElementById("salary-deduction").value) + parseInt(document.getElementById("water-bill").value) + parseInt(document.getElementById("electricity-bill").value);
-            for (let side in flatData) {
-                for (let floorIndex in flatData[side]) {
-                    flatData[side][floorIndex].received = flatData[side][floorIndex].rent;
-                    flatData[side][floorIndex].due = flatData[side][floorIndex].rent - flatData[side][floorIndex].received;
-                    totalReceived += flatData[side][floorIndex].received;
-                }
+    function calculateExpenses() {
+        let totalReceived = 0;
+        let totalExpenses = parseInt(document.getElementById("salary-deduction").value) + parseInt(document.getElementById("water-bill").value) + parseInt(document.getElementById("electricity-bill").value);
+        let summaryHtml = '';
+        for (let side in flatData) {
+            for (let floorIndex in flatData[side]) {
+                let flat = flatData[side][floorIndex];
+                let totalAmount = flat.rent + flat.utility;
+                flat.received = flat.rent;  // Assuming rent is received
+                flat.due = flat.rent - flat.received;
+                totalReceived += flat.received;
+                summaryHtml += `
+                    <tr>
+                        <td>Flat ${floorIndex + 1}</td>
+                        <td>${flat.rent}</td>
+                        <td>${flat.utility}</td>
+                        <td>${totalAmount}</td>
+                        <td>${flat.received}</td>
+                        <td>${flat.due}</td>
+                    </tr>
+                `;
             }
-            let totalAfterDeductions = totalReceived - totalExpenses;
-
-            // Distribution logic based on updated percentages
-            let wifeShare = totalAfterDeductions * 0.125;
-            let sonShare = totalAfterDeductions * 0.5833;
-            let daughterShare = totalAfterDeductions * 0.2917;
-
-            document.getElementById("wife-share").innerText = wifeShare.toFixed(2);
-            document.getElementById("son-share").innerText = sonShare.toFixed(2);
-            document.getElementById("daughter-share").innerText = daughterShare.toFixed(2);
         }
-    }
+        document.getElementById("summary-tbody").innerHTML = summaryHtml;
 
-    function exportReport() {
-        alert("Export functionality will be added soon.");
+        // After deductions
+        let totalAfterDeductions = totalReceived - totalExpenses;
+
+        // Distribution logic
+        let wifeShare = totalAfterDeductions * 0.125;
+        let sonShare = totalAfterDeductions * 0.5833;
+        let daughterShare = totalAfterDeductions * 0.2917;
+
+        document.getElementById("final-total").innerText = totalAfterDeductions;
+        document.getElementById("wife-share").innerText = wifeShare.toFixed(2);
+        document.getElementById("son-share").innerText = sonShare.toFixed(2);
+        document.getElementById("daughter-share").innerText = daughterShare.toFixed(2);
     }
 </script>
 
