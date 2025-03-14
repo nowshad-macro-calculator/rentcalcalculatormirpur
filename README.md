@@ -1,4 +1,4 @@
-Mirpur Rent calculator with Inheritance distribution
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -56,6 +56,7 @@ Mirpur Rent calculator with Inheritance distribution
             border-radius: 5px;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
@@ -68,84 +69,35 @@ Mirpur Rent calculator with Inheritance distribution
         <label>Salary: <input type="number" id="salary" value="10000" onchange="updateSummary()"></label><br>
         <label>Misc Electricity Bill: <input type="number" id="electricity-bill" value="1000" onchange="updateSummary()"></label><br>
         <label>Water Bill: <input type="number" id="water-bill" value="8000" onchange="updateSummary()"></label><br>
+        <label>Additional Income: <input type="number" id="additional-income" value="0" onchange="updateSummary()"></label><br>
         <div id="summary-details"></div>
         <button class="button" onclick="generatePDF()">Export to PDF</button>
     </div>
 </div>
 
 <script>
-    const floors = ["Ground", "1st", "2nd", "3rd", "4th", "5th", "6th"];
-    const flats = {
-        "East": [19000, 15500, 15500, 14500, 14400, 14200, 0],
-        "West": [20500, 16000, 15000, 14500, 14000, 13700, 6000]
-    };
-    const personsDefault = {
-        "East": [0, 5, 6, 7, 6, 3, 0],
-        "West": [0, 2, 8, 7, 2, 4, 0]
-    };
-
-    function renderHouse() {
-        const layout = document.getElementById("house-layout");
-        layout.innerHTML = "";
-        for (let i = 6; i >= 0; i--) {
-            layout.innerHTML += `
-                <div class="floor-row">
-                    <div class="unit">
-                        <h4>East ${floors[i]} Floor</h4>
-                        Rent: ${flats["East"][i]} Taka<br>
-                        Persons: <input type="number" value="${personsDefault["East"][i]}" id="east-${i}-persons" onchange="updateSummary()">
-                        <br>Rent Received: <select id="east-${i}-rent" onchange="updateSummary()">
-                            <option value="no">No</option>
-                            <option value="yes">Yes</option>
-                        </select>
-                        <br><strong>Grand Total: <span id="east-${i}-total">0</span> Taka</strong>
-                    </div>
-                    <div class="unit">
-                        <h4>West ${floors[i]} Floor</h4>
-                        Rent: ${flats["West"][i]} Taka<br>
-                        Persons: <input type="number" value="${personsDefault["West"][i]}" id="west-${i}-persons" onchange="updateSummary()">
-                        <br>Rent Received: <select id="west-${i}-rent" onchange="updateSummary()">
-                            <option value="no">No</option>
-                            <option value="yes">Yes</option>
-                        </select>
-                        <br><strong>Grand Total: <span id="west-${i}-total">0</span> Taka</strong>
-                    </div>
-                </div>`;
-        }
+    function getCurrentMonth() {
+        const date = new Date();
+        return date.toLocaleString('default', { month: 'long' });
     }
 
     function updateSummary() {
-        let totalRent = 0, totalUtility = 0, receivedRent = 0, totalDue = 0;
-        for (let i = 0; i <= 6; i++) {
-            ["East", "West"].forEach(side => {
-                let rent = flats[side][i];
-                let persons = parseInt(document.getElementById(`${side.toLowerCase()}-${i}-persons`).value || 0);
-                let rentReceived = document.getElementById(`${side.toLowerCase()}-${i}-rent`).value === "yes";
-                let utility = persons * 200;
-                let grandTotal = rent + utility;
-                document.getElementById(`${side.toLowerCase()}-${i}-total`).innerText = grandTotal;
-                
-                totalRent += rent;
-                totalUtility += utility;
-                if (rentReceived) receivedRent += rent;
-                else totalDue += rent;
-            });
-        }
-
+        let receivedRent = 0, totalExpenses = 0, netIncome = 0;
         let salary = parseInt(document.getElementById("salary").value);
         let electricityBill = parseInt(document.getElementById("electricity-bill").value);
         let waterBill = parseInt(document.getElementById("water-bill").value);
-        let totalExpenses = salary + electricityBill + waterBill;
-        let netIncome = receivedRent - totalExpenses;
+        let additionalIncome = parseInt(document.getElementById("additional-income").value);
+        
+        totalExpenses = salary + electricityBill + waterBill;
+        netIncome = receivedRent + additionalIncome - totalExpenses;
         let parvinShare = netIncome * 0.125;
         let nowshadShare = netIncome * 0.5833;
         let nowshinShare = netIncome * 0.2917;
 
         document.getElementById("summary-details").innerHTML = `
-            <p>Total Rent: ${totalRent} Taka</p>
-            <p>Total Utility: ${totalUtility} Taka</p>
-            <p>Rent Received: ${receivedRent} Taka</p>
-            <p>Total Due: ${totalDue} Taka</p>
+            <h4>${getCurrentMonth()} Summary</h4>
+            <p>Total Rent Received: ${receivedRent} Taka</p>
+            <p>Additional Income: ${additionalIncome} Taka</p>
             <p>Total Expenses: ${totalExpenses} Taka</p>
             <p>Net Income: ${netIncome} Taka</p>
             <h4>Inheritance Distribution</h4>
@@ -155,7 +107,15 @@ Mirpur Rent calculator with Inheritance distribution
         `;
     }
 
-    window.onload = () => { renderHouse(); updateSummary(); };
+    function generatePDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        doc.text(`${getCurrentMonth()} Mirpur House Rent Summary`, 10, 10);
+        doc.text(document.getElementById("summary-details").innerText, 10, 20);
+        doc.save("Mirpur_House_Rent_Summary.pdf");
+    }
+
+    window.onload = updateSummary;
 </script>
 </body>
 </html>
