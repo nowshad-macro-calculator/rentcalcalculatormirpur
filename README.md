@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+Mirpur Rent Calculator with inheritance distribution
 <html lang="en">
 <head>
     <meta charset="UTF-8">
