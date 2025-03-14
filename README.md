@@ -81,10 +81,6 @@
         .input-field label {
             margin-right: 10px;
         }
-        .language-toggle {
-            margin: 20px 0;
-            text-align: right;
-        }
     </style>
     <!-- Include jsPDF library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -114,6 +110,15 @@
                 <span id="east-ground-due">Due: 19000 Taka</span>
             </div>
             <!-- Repeat for other East side floors (1st, 2nd, etc.) -->
+            <div class="floor" id="east-1st">
+                <span id="east-1st-name">East Side 1st Floor</span> - 15500 Taka
+                <input type="checkbox" id="east-1st-checkbox" onchange="updateFlatData('east', 1)">
+                <input type="number" id="east-1st-persons" value="5" placeholder="No. of persons" onchange="updateFlatData('east', 1)">
+                <input type="number" id="east-1st-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('east', 1)">
+                <span id="east-1st-total">Grand Total: 16500 Taka</span>
+                <span id="east-1st-due">Due: 15500 Taka</span>
+            </div>
+            <!-- More East-side floors can be added here in similar fashion -->
         </div>
 
         <!-- West Side -->
@@ -129,6 +134,15 @@
                 <span id="west-ground-due">Due: 20500 Taka</span>
             </div>
             <!-- Repeat for other West side floors (1st, 2nd, etc.) -->
+            <div class="floor" id="west-1st">
+                <span id="west-1st-name">West Side 1st Floor</span> - 16000 Taka
+                <input type="checkbox" id="west-1st-checkbox" onchange="updateFlatData('west', 1)">
+                <input type="number" id="west-1st-persons" value="2" placeholder="No. of persons" onchange="updateFlatData('west', 1)">
+                <input type="number" id="west-1st-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('west', 1)">
+                <span id="west-1st-total">Grand Total: 16400 Taka</span>
+                <span id="west-1st-due">Due: 16000 Taka</span>
+            </div>
+            <!-- More West-side floors can be added here in similar fashion -->
         </div>
     </div>
 
