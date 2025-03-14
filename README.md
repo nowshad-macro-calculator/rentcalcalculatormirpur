@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+Mirpur rent and inheritance calculator 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -91,15 +91,46 @@
         return date.toLocaleString('default', { month: 'long' });
     }
 
+    function renderHouse() {
+        const layout = document.getElementById("house-layout");
+        layout.innerHTML = "";
+        for (let i = 6; i >= 0; i--) {
+            layout.innerHTML += `
+                <div class="floor-row">
+                    <div class="unit">
+                        <h4>East ${floors[i]} Floor</h4>
+                        Rent: ${flats["East"][i]} Taka<br>
+                        Persons: <input type="number" value="${personsDefault["East"][i]}" id="east-${i}-persons" onchange="updateSummary()">
+                        <br>Rent Received: <select id="east-${i}-rent" onchange="updateSummary()">
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                    <div class="unit">
+                        <h4>West ${floors[i]} Floor</h4>
+                        Rent: ${flats["West"][i]} Taka<br>
+                        Persons: <input type="number" value="${personsDefault["West"][i]}" id="west-${i}-persons" onchange="updateSummary()">
+                        <br>Rent Received: <select id="west-${i}-rent" onchange="updateSummary()">
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                </div>`;
+        }
+    }
+
     function updateSummary() {
         let totalRentReceived = 0;
         let totalDue = 0;
+        let totalUtility = 0;
         for (let i = 0; i <= 6; i++) {
             ["East", "West"].forEach(side => {
                 let rentReceived = document.getElementById(`${side.toLowerCase()}-${i}-rent`).value === "yes" ? flats[side][i] : 0;
                 let dueAmount = rentReceived === 0 ? flats[side][i] : 0;
+                let utility = personsDefault[side][i] * 200;
                 totalRentReceived += rentReceived;
                 totalDue += dueAmount;
+                totalUtility += utility;
             });
         }
         
@@ -118,6 +149,7 @@
             <p>Total Rent Received: ${totalRentReceived + additionalIncome} Taka</p>
             <p>Additional Income: ${additionalIncome} Taka</p>
             <p>Total Due: ${totalDue} Taka</p>
+            <p>Total Utility: ${totalUtility} Taka</p>
             <p>Total Expenses: ${totalExpenses} Taka</p>
             <p>Net Income: ${netIncome} Taka</p>
             <h4>Inheritance Distribution</h4>
@@ -127,7 +159,7 @@
         `;
     }
 
-    window.onload = updateSummary;
+    window.onload = () => { renderHouse(); updateSummary(); };
 </script>
 </body>
 </html>
