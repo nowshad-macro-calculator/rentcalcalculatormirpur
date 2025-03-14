@@ -1,4 +1,4 @@
-Mirpur rent and inheritance distribution calculator
+Mirpur rental and inheritance distribution calculator 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -121,6 +121,13 @@ Mirpur rent and inheritance distribution calculator
 
     function updateSummary() {
         let totalRentReceived = 0;
+        for (let i = 0; i <= 6; i++) {
+            ["East", "West"].forEach(side => {
+                let rentReceived = document.getElementById(`${side.toLowerCase()}-${i}-rent`).value === "yes" ? flats[side][i] : 0;
+                totalRentReceived += rentReceived;
+            });
+        }
+        
         let salary = parseInt(document.getElementById("salary").value);
         let electricityBill = parseInt(document.getElementById("electricity-bill").value);
         let waterBill = parseInt(document.getElementById("water-bill").value);
@@ -133,7 +140,7 @@ Mirpur rent and inheritance distribution calculator
 
         document.getElementById("summary-details").innerHTML = `
             <h4>${getCurrentMonth()} Summary</h4>
-            <p>Total Rent Received: ${totalRentReceived} Taka</p>
+            <p>Total Rent Received: ${totalRentReceived + additionalIncome} Taka</p>
             <p>Additional Income: ${additionalIncome} Taka</p>
             <p>Total Expenses: ${totalExpenses} Taka</p>
             <p>Net Income: ${netIncome} Taka</p>
@@ -142,14 +149,6 @@ Mirpur rent and inheritance distribution calculator
             <p>Nowshad: ${nowshadShare.toFixed(2)} Taka</p>
             <p>Nowshin: ${nowshinShare.toFixed(2)} Taka</p>
         `;
-    }
-
-    function generatePDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        doc.text(`${getCurrentMonth()} Mirpur House Rent Summary`, 10, 10);
-        doc.text(document.getElementById("summary-details").innerText, 10, 20);
-        doc.save("Mirpur_House_Rent_Summary.pdf");
     }
 
     window.onload = () => { renderHouse(); updateSummary(); };
