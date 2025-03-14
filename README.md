@@ -1,4 +1,4 @@
-Mirpur Rent and inheritance calculator 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -91,34 +91,6 @@ Mirpur Rent and inheritance calculator
         return date.toLocaleString('default', { month: 'long' });
     }
 
-    function renderHouse() {
-        const layout = document.getElementById("house-layout");
-        layout.innerHTML = "";
-        for (let i = 6; i >= 0; i--) {
-            layout.innerHTML += `
-                <div class="floor-row">
-                    <div class="unit">
-                        <h4>East ${floors[i]} Floor</h4>
-                        Rent: ${flats["East"][i]} Taka<br>
-                        Persons: <input type="number" value="${personsDefault["East"][i]}" id="east-${i}-persons" onchange="updateSummary()">
-                        <br>Rent Received: <select id="east-${i}-rent" onchange="updateSummary()">
-                            <option value="no">No</option>
-                            <option value="yes">Yes</option>
-                        </select>
-                    </div>
-                    <div class="unit">
-                        <h4>West ${floors[i]} Floor</h4>
-                        Rent: ${flats["West"][i]} Taka<br>
-                        Persons: <input type="number" value="${personsDefault["West"][i]}" id="west-${i}-persons" onchange="updateSummary()">
-                        <br>Rent Received: <select id="west-${i}-rent" onchange="updateSummary()">
-                            <option value="no">No</option>
-                            <option value="yes">Yes</option>
-                        </select>
-                    </div>
-                </div>`;
-        }
-    }
-
     function updateSummary() {
         let totalRentReceived = 0;
         let totalDue = 0;
@@ -137,6 +109,9 @@ Mirpur Rent and inheritance calculator
         let additionalIncome = parseInt(document.getElementById("additional-income").value);
         let totalExpenses = salary + electricityBill + waterBill;
         let netIncome = totalRentReceived + additionalIncome - totalExpenses;
+        let parvinShare = netIncome * 0.125;
+        let nowshadShare = netIncome * 0.5833;
+        let nowshinShare = netIncome * 0.2917;
 
         document.getElementById("summary-details").innerHTML = `
             <h4>${getCurrentMonth()} Summary</h4>
@@ -145,10 +120,14 @@ Mirpur Rent and inheritance calculator
             <p>Total Due: ${totalDue} Taka</p>
             <p>Total Expenses: ${totalExpenses} Taka</p>
             <p>Net Income: ${netIncome} Taka</p>
+            <h4>Inheritance Distribution</h4>
+            <p>Parvin: ${parvinShare.toFixed(2)} Taka</p>
+            <p>Nowshad: ${nowshadShare.toFixed(2)} Taka</p>
+            <p>Nowshin: ${nowshinShare.toFixed(2)} Taka</p>
         `;
     }
 
-    window.onload = () => { renderHouse(); updateSummary(); };
+    window.onload = updateSummary;
 </script>
 </body>
 </html>
