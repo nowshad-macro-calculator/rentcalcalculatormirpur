@@ -1,4 +1,4 @@
-Mirpur House Rent Calculator
+Mirpur Rent calculator with Inheritance distribution
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -98,6 +98,7 @@ Mirpur House Rent Calculator
                             <option value="no">No</option>
                             <option value="yes">Yes</option>
                         </select>
+                        <br><strong>Grand Total: <span id="east-${i}-total">0</span> Taka</strong>
                     </div>
                     <div class="unit">
                         <h4>West ${floors[i]} Floor</h4>
@@ -107,6 +108,7 @@ Mirpur House Rent Calculator
                             <option value="no">No</option>
                             <option value="yes">Yes</option>
                         </select>
+                        <br><strong>Grand Total: <span id="west-${i}-total">0</span> Taka</strong>
                     </div>
                 </div>`;
         }
@@ -120,6 +122,8 @@ Mirpur House Rent Calculator
                 let persons = parseInt(document.getElementById(`${side.toLowerCase()}-${i}-persons`).value || 0);
                 let rentReceived = document.getElementById(`${side.toLowerCase()}-${i}-rent`).value === "yes";
                 let utility = persons * 200;
+                let grandTotal = rent + utility;
+                document.getElementById(`${side.toLowerCase()}-${i}-total`).innerText = grandTotal;
                 
                 totalRent += rent;
                 totalUtility += utility;
@@ -133,6 +137,9 @@ Mirpur House Rent Calculator
         let waterBill = parseInt(document.getElementById("water-bill").value);
         let totalExpenses = salary + electricityBill + waterBill;
         let netIncome = receivedRent - totalExpenses;
+        let parvinShare = netIncome * 0.125;
+        let nowshadShare = netIncome * 0.5833;
+        let nowshinShare = netIncome * 0.2917;
 
         document.getElementById("summary-details").innerHTML = `
             <p>Total Rent: ${totalRent} Taka</p>
@@ -141,15 +148,11 @@ Mirpur House Rent Calculator
             <p>Total Due: ${totalDue} Taka</p>
             <p>Total Expenses: ${totalExpenses} Taka</p>
             <p>Net Income: ${netIncome} Taka</p>
+            <h4>Inheritance Distribution</h4>
+            <p>Parvin: ${parvinShare.toFixed(2)} Taka</p>
+            <p>Nowshad: ${nowshadShare.toFixed(2)} Taka</p>
+            <p>Nowshin: ${nowshinShare.toFixed(2)} Taka</p>
         `;
-    }
-
-    function generatePDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        doc.text("Mirpur House Rent Summary", 10, 10);
-        doc.text(document.getElementById("summary-details").innerText, 10, 20);
-        doc.save("Mirpur_House_Rent_Summary.pdf");
     }
 
     window.onload = () => { renderHouse(); updateSummary(); };
