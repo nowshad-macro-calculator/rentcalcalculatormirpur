@@ -317,6 +317,19 @@
 
         document.getElementById(`${side}-${floorIndex}-total`).innerText = `Grand Total: ${flatData[side][floorIndex].grandTotal} Taka`;
         document.getElementById(`${side}-${floorIndex}-due`).innerText = `Due: ${flatData[side][floorIndex].due} Taka`;
+
+        calculateTotalRentReceived();
+    }
+
+    // Function to calculate total rent received
+    function calculateTotalRentReceived() {
+        let totalRentReceived = 0;
+        for (let side in flatData) {
+            for (let floorIndex in flatData[side]) {
+                totalRentReceived += flatData[side][floorIndex].received;
+            }
+        }
+        document.getElementById("total-rent-received").innerText = totalRentReceived;
     }
 
     // Function to calculate expenses and inheritance distribution
