@@ -81,6 +81,10 @@
         .input-field label {
             margin-right: 10px;
         }
+        .language-toggle {
+            margin: 20px 0;
+            text-align: right;
+        }
     </style>
     <!-- Include jsPDF library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -88,42 +92,49 @@
 <body>
 
 <div class="container">
-    <h1>Mirpur House Rent Calculator</h1>
+    <!-- Language Toggle Button -->
+    <div class="language-toggle">
+        <button class="button" onclick="toggleLanguage()">Switch to Bangla</button>
+    </div>
+
+    <h1 id="page-title">Mirpur House Rent Calculator</h1>
 
     <!-- House Layout (East and West Sides) -->
     <div class="house-layout">
         <!-- East Side -->
         <div class="side">
-            <h3>East Side</h3>
+            <h3 id="east-side-title">East Side</h3>
+            <!-- Flat entries -->
             <div class="floor" id="east-ground">
-                East Side Ground Floor - 19000 Taka
+                <span id="east-ground-name">East Side Ground Floor</span> - 19000 Taka
                 <input type="checkbox" id="east-ground-checkbox" onchange="updateFlatData('east', 0)">
                 <input type="number" id="east-ground-persons" value="0" placeholder="No. of persons" onchange="updateFlatData('east', 0)">
                 <input type="number" id="east-ground-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('east', 0)">
                 <span id="east-ground-total">Grand Total: 19000 Taka</span>
                 <span id="east-ground-due">Due: 19000 Taka</span>
             </div>
-            <!-- Repeat similar blocks for other floors -->
+            <!-- Repeat for other East side floors (1st, 2nd, etc.) -->
         </div>
 
         <!-- West Side -->
         <div class="side">
-            <h3>West Side</h3>
+            <h3 id="west-side-title">West Side</h3>
+            <!-- Flat entries -->
             <div class="floor" id="west-ground">
-                West Side Ground Floor - 20500 Taka
+                <span id="west-ground-name">West Side Ground Floor</span> - 20500 Taka
                 <input type="checkbox" id="west-ground-checkbox" onchange="updateFlatData('west', 0)">
                 <input type="number" id="west-ground-persons" value="0" placeholder="No. of persons" onchange="updateFlatData('west', 0)">
                 <input type="number" id="west-ground-utility-service" value="0" placeholder="Utility & Service Charge" onchange="updateFlatData('west', 0)">
                 <span id="west-ground-total">Grand Total: 20500 Taka</span>
                 <span id="west-ground-due">Due: 20500 Taka</span>
             </div>
-            <!-- Repeat similar blocks for other floors -->
+            <!-- Repeat for other West side floors (1st, 2nd, etc.) -->
         </div>
     </div>
 
     <!-- Summary Section -->
     <div class="summary">
-        <h3>Summary</h3>
+        <h3 id="summary-title">Summary</h3>
         <table>
             <thead>
                 <tr>
@@ -140,17 +151,17 @@
         </table>
 
         <div class="input-field">
-            <label for="salary-deduction">Salary Deduction (10000 Taka): </label>
+            <label for="salary-deduction" id="salary-deduction-label">Salary Deduction (10000 Taka): </label>
             <input type="number" id="salary-deduction" value="10000" onchange="updateTotal()">
         </div>
 
         <div class="input-field">
-            <label for="water-bill">Water Bill: </label>
+            <label for="water-bill" id="water-bill-label">Water Bill: </label>
             <input type="number" id="water-bill" value="200" onchange="updateTotal()">
         </div>
 
         <div class="input-field">
-            <label for="electricity-bill">Electricity Bill: </label>
+            <label for="electricity-bill" id="electricity-bill-label">Electricity Bill: </label>
             <input type="number" id="electricity-bill" value="0" onchange="updateTotal()">
         </div>
 
@@ -159,20 +170,20 @@
             <button class="button" onclick="exportToPDF()">Export to PDF</button>
         </div>
 
-        <h4>Total Rent Received: <span id="total-rent-received">0</span></h4>
-        <h4>Total Expenses: <span id="total-expenses">0</span></h4>
-        <h4>Total After Expenses: <span id="final-total">0</span></h4>
+        <h4 id="total-rent-received-label">Total Rent Received: <span id="total-rent-received">0</span></h4>
+        <h4 id="total-expenses-label">Total Expenses: <span id="total-expenses">0</span></h4>
+        <h4 id="total-after-expenses-label">Total After Expenses: <span id="final-total">0</span></h4>
         
-        <h4>Inheritance Distribution</h4>
-        <p>Wife gets: <span id="wife-share">0</span></p>
-        <p>Son gets: <span id="son-share">0</span></p>
-        <p>Daughter gets: <span id="daughter-share">0</span></p>
+        <h4 id="inheritance-title">Inheritance Distribution</h4>
+        <p id="wife-share-label">Wife gets: <span id="wife-share">0</span></p>
+        <p id="son-share-label">Son gets: <span id="son-share">0</span></p>
+        <p id="daughter-share-label">Daughter gets: <span id="daughter-share">0</span></p>
 
         <!-- Total Rent and Utility Summary -->
         <div>
-            <h4>Total Rent: <span id="total-rent">0</span></h4>
-            <h4>Total Utility & Service Charge: <span id="total-utility-service">0</span></h4>
-            <h4>Total Grand Total: <span id="total-grand-total">0</span></h4>
+            <h4 id="total-rent-label">Total Rent: <span id="total-rent">0</span></h4>
+            <h4 id="total-utility-service-label">Total Utility & Service Charge: <span id="total-utility-service">0</span></h4>
+            <h4 id="total-grand-total-label">Total Grand Total: <span id="total-grand-total">0</span></h4>
         </div>
     </div>
 
@@ -200,6 +211,54 @@
         ]
     };
 
+    let language = 'en';  // Default language is English
+
+    // Function to switch between English and Bangla
+    function toggleLanguage() {
+        if (language === 'en') {
+            language = 'bn';
+            document.getElementById('page-title').innerText = 'মিরপুর হাউস ভাড়া ক্যালকুলেটর';
+            document.getElementById('east-side-title').innerText = 'পূর্ব দিক';
+            document.getElementById('west-side-title').innerText = 'পশ্চিম দিক';
+            document.getElementById('summary-title').innerText = 'সারাংশ';
+            document.getElementById('salary-deduction-label').innerText = 'বেতন কর্তন (১০০০০ টাকা):';
+            document.getElementById('water-bill-label').innerText = 'পানি বিল:';
+            document.getElementById('electricity-bill-label').innerText = 'বিদ্যুৎ বিল:';
+            document.getElementById('total-rent-received-label').innerText = 'মোট ভাড়া পাওয়া:';
+            document.getElementById('total-expenses-label').innerText = 'মোট খরচ:';
+            document.getElementById('total-after-expenses-label').innerText = 'খরচ পরবর্তী মোট:';
+            document.getElementById('inheritance-title').innerText = 'ঐশ্বর্যের বিতরণ';
+            document.getElementById('wife-share-label').innerText = 'মা পাবেন:';
+            document.getElementById('son-share-label').innerText = 'ছেলে পাবেন:';
+            document.getElementById('daughter-share-label').innerText = 'মেয়ে পাবেন:';
+            document.getElementById('total-rent-label').innerText = 'মোট ভাড়া:';
+            document.getElementById('total-utility-service-label').innerText = 'মোট ইউটিলিটি ও সেবার চার্জ:';
+            document.getElementById('total-grand-total-label').innerText = 'মোট গ্র্যান্ড টোটাল:';
+            document.querySelector('.language-toggle button').innerText = 'Switch to English';
+        } else {
+            language = 'en';
+            document.getElementById('page-title').innerText = 'Mirpur House Rent Calculator';
+            document.getElementById('east-side-title').innerText = 'East Side';
+            document.getElementById('west-side-title').innerText = 'West Side';
+            document.getElementById('summary-title').innerText = 'Summary';
+            document.getElementById('salary-deduction-label').innerText = 'Salary Deduction (10000 Taka):';
+            document.getElementById('water-bill-label').innerText = 'Water Bill:';
+            document.getElementById('electricity-bill-label').innerText = 'Electricity Bill:';
+            document.getElementById('total-rent-received-label').innerText = 'Total Rent Received:';
+            document.getElementById('total-expenses-label').innerText = 'Total Expenses:';
+            document.getElementById('total-after-expenses-label').innerText = 'Total After Expenses:';
+            document.getElementById('inheritance-title').innerText = 'Inheritance Distribution';
+            document.getElementById('wife-share-label').innerText = 'Wife gets:';
+            document.getElementById('son-share-label').innerText = 'Son gets:';
+            document.getElementById('daughter-share-label').innerText = 'Daughter gets:';
+            document.getElementById('total-rent-label').innerText = 'Total Rent:';
+            document.getElementById('total-utility-service-label').innerText = 'Total Utility & Service Charge:';
+            document.getElementById('total-grand-total-label').innerText = 'Total Grand Total:';
+            document.querySelector('.language-toggle button').innerText = 'Switch to Bangla';
+        }
+    }
+
+    // Function to update flat data (rent received, utility, etc.)
     function updateFlatData(side, floorIndex) {
         let persons = document.getElementById(`${side}-${floorIndex}-persons`).value;
         let utilityServiceCharge = document.getElementById(`${side}-${floorIndex}-utility-service`).value;
@@ -221,6 +280,7 @@
         document.getElementById(`${side}-${floorIndex}-total`).innerText = `Grand Total: ${flatData[side][floorIndex].grandTotal} Taka`;
     }
 
+    // Function to calculate expenses and inheritance distribution
     function calculateExpenses() {
         let totalReceived = 0;
         let totalExpenses = parseInt(document.getElementById("salary-deduction").value) + parseInt(document.getElementById("water-bill").value) + parseInt(document.getElementById("electricity-bill").value);
