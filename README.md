@@ -1,4 +1,5 @@
 Nowshad's Mirpur Rent Calculator 
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -147,7 +148,7 @@ Nowshad's Mirpur Rent Calculator
         <div class="side">
             <h3>West Side</h3>
             <div class="floor" id="west-ground">
-                Ground Floor - 0 Taka
+                Ground Floor - 20500 Taka
                 <input type="checkbox" id="west-ground-checkbox">
                 <input type="number" id="west-ground-persons" value="0" placeholder="No. of persons" onchange="updateFlatData('west', 0)">
                 <span id="west-ground-utility">Utility Bill: 0 Taka</span>
@@ -209,6 +210,7 @@ Nowshad's Mirpur Rent Calculator
                 <!-- Summary rows will be populated here -->
             </tbody>
         </table>
+        
         <div class="input-field">
             <label for="salary-deduction">Salary Deduction (10000 Taka): </label>
             <input type="number" id="salary-deduction" value="10000" onchange="updateTotal()">
@@ -233,6 +235,12 @@ Nowshad's Mirpur Rent Calculator
         <p>Wife gets: <span id="wife-share">0</span></p>
         <p>Son gets: <span id="son-share">0</span></p>
         <p>Daughter gets: <span id="daughter-share">0</span></p>
+
+        <!-- Total Rent and Utility Summary -->
+        <div>
+            <h4>Total Rent: <span id="total-rent">0</span></h4>
+            <h4>Total Utility: <span id="total-utility">0</span></h4>
+        </div>
     </div>
 
 </div>
@@ -249,7 +257,7 @@ Nowshad's Mirpur Rent Calculator
             { rent: 0, persons: 0, received: 0, utility: 0, due: 0 }
         ],
         "west": [
-            { rent: 0, persons: 0, received: 0, utility: 0, due: 0 },
+            { rent: 20500, persons: 0, received: 0, utility: 0, due: 0 }, // Updated ground floor rent for West side
             { rent: 16000, persons: 2, received: 0, utility: 400, due: 0 },
             { rent: 15000, persons: 8, received: 0, utility: 1600, due: 0 },
             { rent: 14500, persons: 7, received: 0, utility: 1400, due: 0 },
@@ -270,6 +278,9 @@ Nowshad's Mirpur Rent Calculator
         let totalReceived = 0;
         let totalExpenses = parseInt(document.getElementById("salary-deduction").value) + parseInt(document.getElementById("water-bill").value) + parseInt(document.getElementById("electricity-bill").value);
         let summaryHtml = '';
+        let totalRent = 0;
+        let totalUtility = 0;
+
         for (let side in flatData) {
             for (let floorIndex in flatData[side]) {
                 let flat = flatData[side][floorIndex];
@@ -277,6 +288,9 @@ Nowshad's Mirpur Rent Calculator
                 flat.received = flat.rent;  // Assuming rent is received
                 flat.due = flat.rent - flat.received;
                 totalReceived += flat.received;
+                totalRent += flat.rent;
+                totalUtility += flat.utility;
+
                 summaryHtml += `
                     <tr>
                         <td>Flat ${floorIndex + 1}</td>
@@ -289,6 +303,7 @@ Nowshad's Mirpur Rent Calculator
                 `;
             }
         }
+
         document.getElementById("summary-tbody").innerHTML = summaryHtml;
 
         // After deductions
@@ -303,6 +318,10 @@ Nowshad's Mirpur Rent Calculator
         document.getElementById("wife-share").innerText = wifeShare.toFixed(2);
         document.getElementById("son-share").innerText = sonShare.toFixed(2);
         document.getElementById("daughter-share").innerText = daughterShare.toFixed(2);
+
+        // Display total rent and utility
+        document.getElementById("total-rent").innerText = totalRent;
+        document.getElementById("total-utility").innerText = totalUtility;
     }
 </script>
 
