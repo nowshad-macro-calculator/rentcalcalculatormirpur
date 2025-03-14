@@ -229,9 +229,9 @@
 
         <h4>Total After Deductions: <span id="final-total">0</span></h4>
         <h4>Amount Distribution</h4>
-        <p>Mother gets: <span id="mother-share">0</span></p>
-        <p>Brother gets: <span id="brother-share">0</span></p>
-        <p>Sister gets: <span id="sister-share">0</span></p>
+        <p>Wife gets: <span id="wife-share">0</span></p>
+        <p>Son gets: <span id="son-share">0</span></p>
+        <p>Daughter gets: <span id="daughter-share">0</span></p>
     </div>
 
     <!-- Export Button -->
@@ -272,64 +272,30 @@
     function calculateRent() {
         let rentReceived = confirm("Has the rent been received?");
         if (rentReceived) {
+            let totalReceived = 0;
+            let totalExpenses = parseInt(document.getElementById("salary-deduction").value) + parseInt(document.getElementById("water-bill").value) + parseInt(document.getElementById("electricity-bill").value);
             for (let side in flatData) {
                 for (let floorIndex in flatData[side]) {
                     flatData[side][floorIndex].received = flatData[side][floorIndex].rent;
                     flatData[side][floorIndex].due = flatData[side][floorIndex].rent - flatData[side][floorIndex].received;
+                    totalReceived += flatData[side][floorIndex].received;
                 }
             }
-            updateSummary();
+            let totalAfterDeductions = totalReceived - totalExpenses;
+
+            // Distribution logic based on updated percentages
+            let wifeShare = totalAfterDeductions * 0.125;
+            let sonShare = totalAfterDeductions * 0.5833;
+            let daughterShare = totalAfterDeductions * 0.2917;
+
+            document.getElementById("wife-share").innerText = wifeShare.toFixed(2);
+            document.getElementById("son-share").innerText = sonShare.toFixed(2);
+            document.getElementById("daughter-share").innerText = daughterShare.toFixed(2);
         }
-    }
-
-    function updateSummary() {
-        let totalRent = 0, totalUtility = 0, totalReceived = 0, totalDue = 0;
-        let summaryHtml = '';
-        
-        for (let side in flatData) {
-            summaryHtml += `<tr><td colspan="5">${side.charAt(0).toUpperCase() + side.slice(1)} Side</td></tr>`;
-            flatData[side].forEach((flat, index) => {
-                totalRent += flat.rent;
-                totalUtility += flat.utility;
-                totalReceived += flat.received;
-                totalDue += flat.due;
-                summaryHtml += `
-                    <tr>
-                        <td>Flat ${index + 1}</td>
-                        <td>${flat.rent}</td>
-                        <td>${flat.utility}</td>
-                        <td>${flat.received}</td>
-                        <td>${flat.due}</td>
-                    </tr>
-                `;
-            });
-        }
-
-        document.getElementById("summary-tbody").innerHTML = summaryHtml;
-        document.getElementById("final-total").innerText = totalReceived;
-        let salaryDeduction = parseInt(document.getElementById("salary-deduction").value);
-        let waterBill = parseInt(document.getElementById("water-bill").value);
-        let electricityBill = parseInt(document.getElementById("electricity-bill").value);
-        let totalAfterDeductions = totalReceived - salaryDeduction - waterBill - electricityBill;
-
-        let motherShare = totalAfterDeductions / 8;
-        let brotherShare = 2 * motherShare;
-        let sisterShare = motherShare;
-
-        document.getElementById("mother-share").innerText = motherShare;
-        document.getElementById("brother-share").innerText = brotherShare;
-        document.getElementById("sister-share").innerText = sisterShare;
     }
 
     function exportReport() {
-        let reportType = prompt("Which format would you like? Type 'PDF' or 'Excel'");
-        if (reportType === 'PDF') {
-            alert("PDF export coming soon!");
-        } else if (reportType === 'Excel') {
-            alert("Excel export coming soon!");
-        } else {
-            alert("Invalid format choice!");
-        }
+        alert("Export functionality will be added soon.");
     }
 </script>
 
